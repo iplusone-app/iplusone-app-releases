@@ -25,40 +25,40 @@
             box-sizing: border-box;
         }
 
-        body {
+        /* 强制禁止页面滚动与翻页 */
+        html, body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
+            height: 100vh;
             margin: 0 auto;
-            padding: 0 24px;
-            width: 100%;
+            padding: 2vh 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         /* Header */
         header {
-            padding: 32px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 8vh;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             letter-spacing: -0.5px;
             color: var(--text-main);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .logo span {
@@ -70,47 +70,48 @@
             color: var(--accent);
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         /* Hero Section */
         .hero {
-            padding: 60px 0 40px;
             text-align: center;
+            padding: 1vh 0;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: clamp(26px, 3.5vh, 40px);
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
+            line-height: 1.25;
+            margin-bottom: 1.2vh;
             background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: clamp(13px, 1.8vh, 16px);
             color: var(--text-sub);
-            max-width: 640px;
-            margin: 0 auto 36px;
+            max-width: 600px;
+            margin: 0 auto 2vh;
+            line-height: 1.5;
         }
 
         .cta-group {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .btn-primary {
             background-color: var(--primary);
             color: white;
-            padding: 14px 28px;
+            padding: 10px 24px;
             border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
@@ -119,77 +120,69 @@
 
         .btn-primary:hover {
             background-color: var(--primary-hover);
-            transform: translateY(-1px);
         }
 
-        .btn-secondary {
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
-
-        .btn-secondary:hover {
-            background-color: #2d3748;
-        }
-
-        /* Features Section */
+        /* Features Grid - 紧凑型网格 */
         .features {
-            padding: 60px 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 1vh 0;
         }
 
         .feature-card {
             background-color: var(--card-bg);
-            padding: 28px;
-            border-radius: 12px;
+            padding: 16px 18px;
+            border-radius: 10px;
             border: 1px solid var(--border);
-            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
         }
 
         .feature-icon {
-            font-size: 28px;
-            margin-bottom: 16px;
+            font-size: 18px;
         }
 
         .feature-card h3 {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 10px;
         }
 
         .feature-card p {
             color: var(--text-sub);
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 12.5px;
+            line-height: 1.45;
         }
 
         /* Footer */
         footer {
-            margin-top: auto;
-            padding: 40px 0;
+            height: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-top: 1px solid var(--border);
-            text-align: center;
             color: var(--text-sub);
-            font-size: 14px;
+            font-size: 12px;
         }
 
-        @media (max-width: 640px) {
-            .hero h1 {
-                font-size: 32px;
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
-            .hero p {
-                font-size: 16px;
+            .feature-card {
+                padding: 12px;
+            }
+            .feature-card p {
+                font-size: 11px;
             }
         }
     </style>
@@ -204,42 +197,58 @@
         <main>
             <section class="hero">
                 <h1>基于可理解性输入的<br>沉浸式英语学习工具</h1>
-                <p>内置ECDICT词典、音视频波形精准控制、间隔重复卡片与电子书阅读器。全本地运行，数据自主掌控。</p>
+                <p>内置词典、音视频波形精准控制、间隔重复卡片与电子书阅读器。全本地运行，数据自主掌控。</p>
                 <div class="cta-group">
                     <a href="https://github.com/iplusone-app" class="btn-primary" target="_blank">前往 GitHub 下载</a>
-                    <a href="#features" class="btn-secondary">了解核心功能</a>
                 </div>
             </section>
 
-            <section class="features" id="features">
+            <section class="features">
                 <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>内置 ECDICT 词典</h3>
+                    <div class="feature-header">
+                        <span class="feature-icon">📚</span>
+                        <h3>ECDICT 词典</h3>
+                    </div>
                     <p>集成完整本地词典数据库，查词无需联网，秒级响应，词性释义一目了然。</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🎧</div>
-                    <h3>音视频波形听读</h3>
-                    <p>可视化音频波形，支持精确定位、反复循环与精听练习。</p>
+                    <div class="feature-header">
+                        <span class="feature-icon">🎧</span>
+                        <h3>波形听读控制</h3>
+                    </div>
+                    <p>可视化波形定位，支持反复循环与精听练习。</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>间隔重复记忆卡</h3>
-                    <p>基于科学记忆曲线，将阅读和听力中积累的生词自动生成复习卡片，高效抗遗忘。</p>
+                    <div class="feature-header">
+                        <span class="feature-icon">🧠</span>
+                        <h3>间隔重复记忆卡</h3>
+                    </div>
+                    <p>基于科学记忆曲线，将阅读和听力积累的生词自动生成复习卡片，抗遗忘。</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">📖</div>
-                    <h3>沉浸阅读</h3>
-                    <p>支持导入多种格式电子书，划词即查，打造顺畅无缝的英语原生阅读环境。</p>
+                    <div class="feature-header">
+                        <span class="feature-icon">📖</span>
+                        <h3>电子书阅读</h3>
+                    </div>
+                    <p>支持导入多格式电子书，划词即查，打造顺畅无缝的英语原生阅读环境。</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>离线优先 & 轻量流畅</h3>
-                    <p>基于 SQLite 存储，不依赖第三方云端服务，个人学习数据完全留在本地。</p>
+                    <div class="feature-header">
+                        <span class="feature-icon">⚡</span>
+                        <h3>离线优先存储</h3>
+                    </div>
+                    <p>不依赖第三方云端服务，个人学习数据完全留在本地。</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>隐私安全 零追踪</h3>
+                    <div class="feature-header">
+                        <span class="feature-icon">🔒</span>
+                        <h3>纯粹隐私安全</h3>
+                    </div>
                     <p>无广告、无社交打扰、无后台数据上传，专注为你打造纯粹的语言学习空间。</p>
                 </div>
             </section>
