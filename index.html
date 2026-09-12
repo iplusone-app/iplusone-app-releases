@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iplusone - 你的第二语言输入助手 - 你的英语学习助手</title>
+    <title data-i18n="doc_title">iplusone - Your Second Language Input Assistant</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
             box-sizing: border-box;
         }
 
-        /* 强制禁止页面滚动与翻页 */
+        /* 强制禁止页面溢出与翻页 */
         html, body {
             width: 100%;
             height: 100vh;
@@ -65,6 +65,12 @@
             color: var(--accent);
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .tag-badge {
             background: rgba(56, 189, 248, 0.1);
             color: var(--accent);
@@ -75,6 +81,36 @@
             border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
+        /* 语言切换器样式 */
+        .lang-switch {
+            display: flex;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            padding: 3px 8px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-main);
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             text-align: center;
@@ -82,7 +118,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(26px, 3.5vh, 40px);
+            font-size: clamp(24px, 3.5vh, 40px);
             font-weight: 700;
             line-height: 1.25;
             margin-bottom: 1.2vh;
@@ -94,7 +130,7 @@
         .hero p {
             font-size: clamp(13px, 1.8vh, 16px);
             color: var(--text-sub);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 2vh;
             line-height: 1.5;
         }
@@ -122,7 +158,7 @@
             background-color: var(--primary-hover);
         }
 
-        /* Features Grid - 紧凑型网格 */
+        /* Features Grid */
         .features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -184,22 +220,33 @@
             .feature-card p {
                 font-size: 11px;
             }
+            .tag-badge {
+                display: none; /* 移动端隐藏标签留出语言切换按钮空间 */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-           <a href="#" class="logo"><span>Get</span>iPlusOne<span>.app</span></a>
-            <span class="tag-badge">第二语言学习软件</span>
+            <a href="#" class="logo"><span>Get</span>iPlusOne<span>.app</span></a>
+            <div class="header-right">
+                <span class="tag-badge" data-i18n="badge">Language Input Tool</span>
+                <!-- 语言切换按钮组 -->
+                <div class="lang-switch">
+                    <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('zh-CN')">简体</button>
+                    <button class="lang-btn" onclick="switchLanguage('zh-TW')">繁體</button>
+                </div>
+            </div>
         </header>
 
         <main>
             <section class="hero">
-                <h1>基于可理解性输入的<br>语言学习工具</h1>
-                <p>音视频播放、电子书阅读、词典导入、复习卡片。全本地运行，数据自主掌控。</p>
+                <h1 data-i18n="hero_title">Language Learning Powered by<br>Comprehensible Input</h1>
+                <p data-i18n="hero_desc">Audio/video playback, EPUB reading, custom dictionary import, and SRS flashcards. 100% offline-first, completely private.</p>
                 <div class="cta-group">
-                    <a href="https://github.com/iplusone-app/iplusone-app-releases/releases" class="btn-primary" target="_blank">前往 GitHub 下载</a>
+                    <a href="https://github.com/iplusone-app/iplusone-app-releases/releases" class="btn-primary" target="_blank" data-i18n="cta_btn">Download on GitHub</a>
                 </div>
             </section>
 
@@ -207,49 +254,49 @@
                 <div class="feature-card">
                     <div class="feature-header">
                         <span class="feature-icon">📚</span>
-                        <h3>词典</h3>
+                        <h3 data-i18n="feat_1_title">Custom Dictionary</h3>
                     </div>
-                    <p>导入本地词典，查词无需联网，秒级响应，权威释义一目了然。</p>
+                    <p data-i18n="feat_1_desc">Import your local dictionaries. Instant lookup with zero internet connection required.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
                         <span class="feature-icon">🎧</span>
-                        <h3>波形听读控制</h3>
+                        <h3 data-i18n="feat_2_title">Waveform Audio Control</h3>
                     </div>
-                    <p>可视化波形定位，支持反复循环与精听练习。</p>
+                    <p data-i18n="feat_2_desc">Visualized audio waveforms with precise AB-looping for intensive listening practice.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
                         <span class="feature-icon">🧠</span>
-                        <h3>记忆卡</h3>
+                        <h3 data-i18n="feat_3_title">Memory Cards (SRS)</h3>
                     </div>
-                    <p>基于记忆曲线，将书籍、音视频中的素材一键生成复习卡片，科学复习拒绝遗忘。</p>
+                    <p data-i18n="feat_3_desc">Convert book and media snippets into flashcards with spaced repetition algorithms to prevent forgetting.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
                         <span class="feature-icon">📖</span>
-                        <h3>电子书阅读</h3>
+                        <h3 data-i18n="feat_4_title">E-Book Reader</h3>
                     </div>
-                    <p>支持导入多格式电子书，划词即查，生词和长难句一键制复习卡片，打造顺畅无缝的英语原生阅读环境。</p>
+                    <p data-i18n="feat_4_desc">Supports EPUB/TXT formats. Click to look up words and turn context sentences into cards instantly.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
                         <span class="feature-icon">⚡</span>
-                        <h3>离线优先存储</h3>
+                        <h3 data-i18n="feat_5_title">Offline-First Storage</h3>
                     </div>
-                    <p>个人学习素材自主选择，不依赖第三方云端服务，完全留在本地。</p>
+                    <p data-i18n="feat_5_desc">All your learning materials and progress are saved locally, independent of third-party cloud services.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
                         <span class="feature-icon">🔒</span>
-                        <h3>纯粹隐私安全</h3>
+                        <h3 data-i18n="feat_6_title">Pure Privacy</h3>
                     </div>
-                    <p>无广告、无社交打扰，专注为你打造纯粹的语言学习空间。</p>
+                    <p data-i18n="feat_6_desc">No ads, no social distractions. A clean and focused environment built exclusively for your language progress.</p>
                 </div>
             </section>
         </main>
@@ -258,5 +305,101 @@
             <p>&copy; 2026 getiplusone.app. All rights reserved.</p>
         </footer>
     </div>
+
+    <!-- 语言切换脚本 -->
+    <script>
+        const translations = {
+            'en': {
+                doc_title: "iplusone - Your Second Language Input Assistant",
+                badge: "Language Input Tool",
+                hero_title: "Language Learning Powered by<br>Comprehensible Input",
+                hero_desc: "Audio/video playback, EPUB reading, custom dictionary import, and SRS flashcards. 100% offline-first, completely private.",
+                cta_btn: "Download on GitHub",
+                feat_1_title: "Custom Dictionary",
+                feat_1_desc: "Import your local dictionaries. Instant lookup with zero internet connection required.",
+                feat_2_title: "Waveform Audio Control",
+                feat_2_desc: "Visualized audio waveforms with precise AB-looping for intensive listening practice.",
+                feat_3_title: "Memory Cards (SRS)",
+                feat_3_desc: "Convert book and media snippets into flashcards with spaced repetition algorithms to prevent forgetting.",
+                feat_4_title: "E-Book Reader",
+                feat_4_desc: "Supports EPUB/TXT formats. Click to look up words and turn context sentences into cards instantly.",
+                feat_5_title: "Offline-First Storage",
+                feat_5_desc: "All your learning materials and progress are saved locally, independent of third-party cloud services.",
+                feat_6_title: "Pure Privacy",
+                feat_6_desc: "No ads, no social distractions. A clean and focused environment built exclusively for your language progress."
+            },
+            'zh-CN': {
+                doc_title: "iplusone - 你的第二语言输入助手",
+                badge: "第二语言学习软件",
+                hero_title: "基于可理解性输入的<br>语言学习工具",
+                hero_desc: "音视频播放、电子书阅读、词典导入、复习卡片。全本地运行，数据自主掌控。",
+                cta_btn: "前往 GitHub 下载",
+                feat_1_title: "词典",
+                feat_1_desc: "导入本地词典，查词无需联网，秒级响应，权威释义一目了然。",
+                feat_2_title: "波形听读控制",
+                feat_2_desc: "可视化波形定位，支持反复循环与精听练习。",
+                feat_3_title: "记忆卡",
+                feat_3_desc: "基于记忆曲线，将书籍、音视频中的素材一键生成复习卡片，科学复习拒绝遗忘。",
+                feat_4_title: "电子书阅读",
+                feat_4_desc: "支持导入多格式电子书，划词即查，生词和长难句一键制作复习卡片，打造顺畅无缝的阅读环境。",
+                feat_5_title: "离线优先存储",
+                feat_5_desc: "个人学习素材自主选择，不依赖第三方云端服务，完全留在本地。",
+                feat_6_title: "纯粹隐私安全",
+                feat_6_desc: "无广告、无社交打扰，专注为你打造纯粹的语言学习空间。"
+            },
+            'zh-TW': {
+                doc_title: "iplusone - 你的第二語言輸入助手",
+                badge: "第二語言學習軟體",
+                hero_title: "基於可理解性輸入的<br>語言學習工具",
+                hero_desc: "影音播放、電子書閱讀、詞典匯入、複習卡片。全本地執行，資料自主掌控。",
+                cta_btn: "前往 GitHub 下載",
+                feat_1_title: "詞典",
+                feat_1_desc: "匯入本地詞典，查詞無需聯網，秒級響應，權威釋義一目瞭然。",
+                feat_2_title: "波形聽讀控制",
+                feat_2_desc: "視覺化波形定位，支援反覆循環與精聽練習。",
+                feat_3_title: "記憶卡",
+                feat_3_desc: "基於記憶曲線，將書籍、影音中的素材一鍵生成複習卡片，科學複習拒絕遺忘。",
+                feat_4_title: "電子書閱讀",
+                feat_4_desc: "支援匯入多格式電子書，劃詞即查，生詞和長難句一鍵製作複習卡片，打造順暢無縫的閱讀環境。",
+                feat_5_title: "離線優先儲存",
+                feat_5_desc: "個人學習素材自主選擇，不依賴第三方雲端服務，完全留在本地。",
+                feat_6_title: "純粹隱私安全",
+                feat_6_desc: "無廣告、無社交打擾，專注為你打造純粹的語言學習空間。"
+            }
+        };
+
+        function switchLanguage(lang) {
+            // 更新 html 标签 lang 属性
+            document.documentElement.lang = lang;
+
+            // 更新所有带有 data-i18n 属性的元素文本
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (key === 'doc_title') {
+                        document.title = translations[lang][key];
+                    } else {
+                        el.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // 更新按钮激活状态
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const activeBtnMap = {
+                'en': 0,
+                'zh-CN': 1,
+                'zh-TW': 2
+            };
+            if (buttons[activeBtnMap[lang]]) {
+                buttons[activeBtnMap[lang]].classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
