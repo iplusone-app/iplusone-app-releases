@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy · GetiPlusOne</title>
+<meta name="description" content="GetiPlusOne privacy policy — offline-first desktop language learning app." />
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; line-height: 1.75; color: #1f2430; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e6e9ef; background: #161a22; } a { color: #6fb3ff; } }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; max-width: 860px; margin: 0 auto; padding: 18px 20px; border-bottom: 1px solid rgba(128,128,128,.25); }
+  header .brand { font-weight: 700; text-decoration: none; color: inherit; }
+  nav button { font: inherit; font-size: 13px; padding: 4px 12px; margin-left: 6px; border: 1px solid rgba(128,128,128,.35); border-radius: 999px; background: transparent; color: inherit; cursor: pointer; }
+  nav button.active { border-color: #4a90d9; color: #4a90d9; font-weight: 600; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 20px 64px; }
+  h1 { font-size: 26px; margin: 8px 0 4px; }
+  h2 { font-size: 17px; margin: 28px 0 6px; }
+  p, li { font-size: 15px; }
+  .meta { font-size: 13px; opacity: .7; }
+  ul { padding-left: 22px; }
+  code { font-size: 13px; word-break: break-all; }
+  a { color: #2b6cb0; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">← GetiPlusOne.app</a>
+  <nav>
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="zh">简体</button>
+    <button type="button" data-lang="zh-Hant">繁體</button>
+  </nav>
+</header>
+
+<main>
+<!-- ============================= EN ============================= -->
+<article data-lang="en">
+  <h1>Privacy Policy</h1>
+  <p class="meta">Applies to the GetiPlusOne desktop application (Windows) and this website. Effective date: September 16, 2026.</p>
+
+  <h2>1. Summary</h2>
+  <p>GetiPlusOne is an <strong>offline-first</strong> language learning application. Your dictionaries, word books, flashcards, review history, media and reading progress are stored <strong>on your own computer</strong>. An account is <strong>optional</strong>: without signing in, the app works fully offline. There are no ads and no third-party analytics/tracking SDKs.</p>
+
+  <h2>2. Data stored locally on your device</h2>
+  <ul>
+    <li>Dictionaries you import, word books, flashcards, review records and study statistics;</li>
+    <li>Imported audio/video/e-book files, generated peaks and thumbnails;</li>
+    <li>Application settings (e.g. theme, language, playback preferences);</li>
+    <li>Downloaded pronunciation models/audio packs.</li>
+  </ul>
+  <p>These files live in the application data folder (e.g. <code>%APPDATA%\englis-master</code>, or the app's container folder when installed from Microsoft Store). Uninstalling the app or deleting that folder removes them.</p>
+
+  <h2>3. Account and optional cloud sync</h2>
+  <p>If you choose to create/sign in an account (email + password), we use <strong>Supabase</strong> as the authentication and database provider. In that case the following may be transmitted to and stored on Supabase:</p>
+  <ul>
+    <li>your email address and a hashed password (handled by Supabase Auth);</li>
+    <li>your subscription/entitlement status and the subscription identifier issued by the payment provider;</li>
+    <li>learning data you choose to sync (for example word books, flashcards, review progress), so the same account can be used on another device.</li>
+  </ul>
+  <p>Traffic is encrypted in transit (HTTPS/WSS). We do not sell personal data and do not use it for advertising.</p>
+
+  <h2>4. Payments</h2>
+  <ul>
+    <li><strong>Website purchases</strong> are processed by <strong>Paddle</strong> as merchant of record. Your card details are entered on Paddle's checkout and are never received or stored by us.</li>
+    <li><strong>Microsoft Store purchases</strong> are processed by Microsoft. We only query (through Microsoft's Store services) whether a subscription is active for your account — we never receive your payment details.</li>
+  </ul>
+
+  <h2>5. AI grammar analysis (optional, membership feature)</h2>
+  <p>When you use sentence grammar analysis, the <strong>text of the selected sentence</strong> (and your interface language) is sent to an AI service to produce the analysis. Depending on your configuration this may be the provider you configure yourself (a "bring your own API key" endpoint, e.g. DeepSeek or another OpenAI-compatible service) or a service we operate. Results are cached on your device. No account credentials, files or dictionaries are sent with that request.</p>
+
+  <h2>6. Network requests</h2>
+  <ul>
+    <li>Downloading the optional pronunciation model/audio library from GitHub Releases;</li>
+    <li>Checking for and downloading application updates (the Microsoft Store build is updated by the Store);</li>
+    <li>Sign-in and cloud sync (only if you use an account);</li>
+    <li>AI analysis (only when you invoke it).</li>
+  </ul>
+  <p>As with any internet request, the remote server may see technical information such as your IP address and user agent. We do not build profiles from it.</p>
+
+  <h2>7. What we do not do</h2>
+  <ul>
+    <li>No advertising, no ad SDKs;</li>
+    <li>No third-party analytics or crash-reporting SDKs;</li>
+    <li>No access to your camera/microphone/contacts;</li>
+    <li>No selling or renting of personal data.</li>
+  </ul>
+
+  <h2>8. Retention and deletion</h2>
+  <p>Local data remains until you delete it (or uninstall). Account data remains while your account exists. You may request deletion of your account and associated cloud data at any time by emailing us; we will delete it within 30 days, except where we must retain payment records for legal/tax reasons.</p>
+
+  <h2>9. Children</h2>
+  <p>The app is not directed to children under 13, and we do not knowingly collect personal information from them.</p>
+
+  <h2>10. Changes</h2>
+  <p>We may update this policy; material changes will be announced on this page and, where appropriate, in the application. Continued use after an update means you accept the revised policy.</p>
+
+  <h2>11. Contact</h2>
+  <p>Questions or deletion requests: <a href="mailto:support@getiplusone.app">support@getiplusone.app</a> · <a href="/terms/">Subscription Terms &amp; EULA</a></p>
+</article>
+
+<!-- ============================= 简体中文 ============================= -->
+<article data-lang="zh" hidden>
+  <h1>隐私政策</h1>
+  <p class="meta">适用于 GetiPlusOne 桌面应用（Windows）及本网站。生效日期：2026 年 9 月 16 日。</p>
+
+  <h2>1. 概述</h2>
+  <p>GetiPlusOne 是<strong>离线优先</strong>的语言学习应用。你的词典、单词本、卡片、复习记录、媒体与阅读进度都保存在<strong>你自己的电脑上</strong>。账号为<strong>可选</strong>：不登录也能完整离线使用。应用无广告，也不集成第三方统计/追踪 SDK。</p>
+
+  <h2>2. 保存在本机的数据</h2>
+  <ul>
+    <li>你导入的词典、单词本、卡片、复习记录与学习统计；</li>
+    <li>导入的音视频/电子书文件，以及生成的波形峰值、缩略图；</li>
+    <li>应用设置（主题、语言、播放偏好等）；</li>
+    <li>已下载的发音模型/音频库。</li>
+  </ul>
+  <p>这些文件位于应用数据目录（如 <code>%APPDATA%\englis-master</code>；从 Microsoft Store 安装时为应用容器目录）。卸载应用或删除该目录即可清除。</p>
+
+  <h2>3. 账号与可选的云同步</h2>
+  <p>如果你选择注册/登录账号（邮箱 + 密码），我们使用 <strong>Supabase</strong> 作为认证与数据库服务。此时以下信息可能被传输并存储于 Supabase：</p>
+  <ul>
+    <li>你的邮箱地址与经哈希处理的密码（由 Supabase Auth 处理）；</li>
+    <li>你的订阅/权益状态，以及支付服务商分配的订阅标识；</li>
+    <li>你选择同步的学习数据（例如单词本、卡片、复习进度），以便同一账号在其它设备继续使用。</li>
+  </ul>
+  <p>传输全程加密（HTTPS/WSS）。我们不出售个人信息，也不会将其用于广告。</p>
+
+  <h2>4. 付款</h2>
+  <ul>
+    <li><strong>官网购买</strong>由 <strong>Paddle</strong>（作为记录商户 MoR）处理，卡号在 Paddle 结账页填写，我们不会收到也不会保存。</li>
+    <li><strong>Microsoft Store 购买</strong>由微软处理。我们只通过微软的商店服务查询你的订阅是否有效，不会获取你的支付信息。</li>
+  </ul>
+
+  <h2>5. AI 语法分析（可选，会员功能）</h2>
+  <p>当你使用句子的语法分析时，<strong>所选句子的文本</strong>（以及你的界面语言）会被发送给 AI 服务以生成分析结果。取决于你的配置，这可能由你自备 API Key 的服务商（如 DeepSeek 等 OpenAI 兼容平台）或我们提供的服务处理。结果会缓存在本机。该请求不会附带账号凭据、文件或词典。</p>
+
+  <h2>6. 网络请求</h2>
+  <ul>
+    <li>从 GitHub Releases 下载可选的发音模型/音频库；</li>
+    <li>检查并下载应用更新（Microsoft Store 版由商店更新）；</li>
+    <li>登录与云同步（仅当你使用账号时）；</li>
+    <li>AI 分析（仅在你主动触发时）。</li>
+  </ul>
+  <p>与任何联网请求一样，远端服务器可能看到你的 IP 地址、User-Agent 等技术信息；我们不会据此建立用户画像。</p>
+
+  <h2>7. 我们不做的事</h2>
+  <ul>
+    <li>不做广告、不接入广告 SDK；</li>
+    <li>不集成第三方分析或崩溃上报 SDK；</li>
+    <li>不访问摄像头/麦克风/通讯录；</li>
+    <li>不买卖、不出租个人信息。</li>
+  </ul>
+
+  <h2>8. 保留与删除</h2>
+  <p>本机数据一直保留到你删除（或卸载）。账号数据在账号存续期间保留。你可以随时发邮件要求删除账号及云端数据，我们将在 30 天内删除；法律/税务要求保留的付款记录除外。</p>
+
+  <h2>9. 儿童</h2>
+  <p>本应用不面向 13 岁以下儿童，我们不会有意收集其个人信息。</p>
+
+  <h2>10. 变更</h2>
+  <p>本政策可能更新；重大变更会在本页（必要时也在应用内）公告。更新后继续使用即表示接受修订后的政策。</p>
+
+  <h2>11. 联系方式</h2>
+  <p>问题或删除请求：<a href="mailto:support@getiplusone.app">support@getiplusone.app</a> · <a href="/terms/">订阅条款与用户协议</a></p>
+</article>
+
+<!-- ============================= 繁體中文 ============================= -->
+<article data-lang="zh-Hant" hidden>
+  <h1>隱私政策</h1>
+  <p class="meta">適用於 GetiPlusOne 桌面應用（Windows）及本網站。生效日期：2026 年 9 月 16 日。</p>
+
+  <h2>1. 概述</h2>
+  <p>GetiPlusOne 是<strong>離線優先</strong>的語言學習應用。你的詞典、單詞本、卡片、複習紀錄、媒體與閱讀進度都保存在<strong>你自己的電腦上</strong>。帳號為<strong>可選</strong>：不登入也能完整離線使用。應用無廣告，也不整合第三方統計/追蹤 SDK。</p>
+
+  <h2>2. 保存在本機的資料</h2>
+  <ul>
+    <li>你匯入的詞典、單詞本、卡片、複習紀錄與學習統計；</li>
+    <li>匯入的音影片/電子書檔案，以及產生的波形峰值、縮圖；</li>
+    <li>應用設定（主題、語言、播放偏好等）；</li>
+    <li>已下載的發音模型/音訊庫。</li>
+  </ul>
+  <p>這些檔案位於應用資料目錄（如 <code>%APPDATA%\englis-master</code>；從 Microsoft Store 安裝時為應用容器目錄）。卸載應用或刪除該目錄即可清除。</p>
+
+  <h2>3. 帳號與可選的雲端同步</h2>
+  <p>如果你選擇註冊/登入帳號（電子郵件 + 密碼），我們使用 <strong>Supabase</strong> 作為認證與資料庫服務。此時以下資訊可能被傳輸並儲存於 Supabase：</p>
+  <ul>
+    <li>你的電子郵件與經雜湊處理的密碼（由 Supabase Auth 處理）；</li>
+    <li>你的訂閱/權益狀態，以及支付服務商分配的訂閱識別碼；</li>
+    <li>你選擇同步的學習資料（例如單詞本、卡片、複習進度），以便同一帳號在其它裝置繼續使用。</li>
+  </ul>
+  <p>傳輸全程加密（HTTPS/WSS）。我們不出售個人資訊，也不會將其用於廣告。</p>
+
+  <h2>4. 付款</h2>
+  <ul>
+    <li><strong>官網購買</strong>由 <strong>Paddle</strong>（作為記錄商戶 MoR）處理，卡號在 Paddle 結帳頁填寫，我們不會收到也不會保存。</li>
+    <li><strong>Microsoft Store 購買</strong>由微軟處理。我們只透過微軟的商店服務查詢你的訂閱是否有效，不會取得你的支付資訊。</li>
+  </ul>
+
+  <h2>5. AI 語法分析（可選，會員功能）</h2>
+  <p>當你使用句子的語法分析時，<strong>所選句子的文字</strong>（以及你的介面語言）會被傳送給 AI 服務以產生分析結果。取決於你的設定，這可能由你自備 API Key 的服務商（如 DeepSeek 等 OpenAI 相容平台）或我們提供的服務處理。結果會快取在本機。該請求不會附帶帳號憑證、檔案或詞典。</p>
+
+  <h2>6. 網路請求</h2>
+  <ul>
+    <li>從 GitHub Releases 下載可選的發音模型/音訊庫；</li>
+    <li>檢查並下載應用更新（Microsoft Store 版由商店更新）；</li>
+    <li>登入與雲端同步（僅當你使用帳號時）；</li>
+    <li>AI 分析（僅在你主動觸發時）。</li>
+  </ul>
+  <p>與任何連網請求一樣，遠端伺服器可能看到你的 IP 位址、User-Agent 等技術資訊；我們不會據此建立使用者輪廓。</p>
+
+  <h2>7. 我們不做的事</h2>
+  <ul>
+    <li>不做廣告、不整合廣告 SDK；</li>
+    <li>不整合第三方分析或崩潰上報 SDK；</li>
+    <li>不存取攝影機/麥克風/通訊錄；</li>
+    <li>不買賣、不出租個人資訊。</li>
+  </ul>
+
+  <h2>8. 保留與刪除</h2>
+  <p>本機資料一直保留到你刪除（或卸載）。帳號資料在帳號存續期間保留。你可以隨時寄信要求刪除帳號及雲端資料，我們將在 30 天內刪除；法律/稅務要求保留的付款紀錄除外。</p>
+
+  <h2>9. 兒童</h2>
+  <p>本應用不面向 13 歲以下兒童，我們不會有意蒐集其個人資訊。</p>
+
+  <h2>10. 變更</h2>
+  <p>本政策可能更新；重大變更會在本頁（必要時也在應用內）公告。更新後繼續使用即表示接受修訂後的政策。</p>
+
+  <h2>11. 聯絡方式</h2>
+  <p>問題或刪除請求：<a href="mailto:support@getiplusone.app">support@getiplusone.app</a> · <a href="/terms/">訂閱條款與使用者協議</a></p>
+</article>
+</main>
+
+<script>
+(function () {
+  var KEY = 'getiplusone-legal-lang'
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('nav button[data-lang]'))
+  var articles = Array.prototype.slice.call(document.querySelectorAll('main article[data-lang]'))
+  function apply(lang) {
+    if (!lang) return
+    articles.forEach(function (a) { a.hidden = a.getAttribute('data-lang') !== lang })
+    buttons.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang) })
+    document.documentElement.lang = lang
+    try { localStorage.setItem(KEY, lang) } catch (e) {}
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-lang')) }) })
+  var saved = null
+  try { saved = localStorage.getItem(KEY) } catch (e) {}
+  if (!saved) {
+    var nav = (navigator.language || 'en').toLowerCase()
+    saved = nav.indexOf('zh') === 0 ? (/(tw|hk|mo|sg)/.test(nav) ? 'zh-Hant' : 'zh') : 'en'
+  }
+  apply(saved)
+})()
+</script>
+</body>
+</html>
 
