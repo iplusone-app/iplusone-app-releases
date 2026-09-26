@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy · GetiPlusOne Web Companion</title>
+<meta name="description" content="GetiPlusOne Web Companion browser extension privacy policy — collects nothing, talks only to the local desktop app over loopback." />
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; line-height: 1.75; color: #1f2430; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e6e9ef; background: #161a22; } a { color: #6fb3ff; } }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; max-width: 860px; margin: 0 auto; padding: 18px 20px; border-bottom: 1px solid rgba(128,128,128,.25); }
+  header .brand { font-weight: 700; text-decoration: none; color: inherit; }
+  nav button { font: inherit; font-size: 13px; padding: 4px 12px; margin-left: 6px; border: 1px solid rgba(128,128,128,.35); border-radius: 999px; background: transparent; color: inherit; cursor: pointer; }
+  nav button.active { border-color: #4a90d9; color: #4a90d9; font-weight: 600; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 20px 64px; }
+  h1 { font-size: 26px; margin: 8px 0 4px; }
+  h2 { font-size: 17px; margin: 28px 0 6px; }
+  p, li { font-size: 15px; }
+  .meta { font-size: 13px; opacity: .7; }
+  ul { padding-left: 22px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px; }
+  th, td { border: 1px solid rgba(128,128,128,.35); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: rgba(128,128,128,.12); font-weight: 600; }
+  code { font-size: 13px; word-break: break-all; }
+  a { color: #2b6cb0; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">← GetiPlusOne.app</a>
+  <nav>
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="zh">简体</button>
+    <button type="button" data-lang="zh-Hant">繁體</button>
+  </nav>
+</header>
+
+<main>
+<!-- ============================= EN ============================= -->
+<article data-lang="en">
+  <h1>Web Companion – Privacy Policy</h1>
+  <p class="meta">Applies to the <strong>GetiPlusOne Web Companion</strong> browser extension (Chrome / Edge, Manifest V3). Last updated: September 25, 2026. See also the <a href="/privacy/">desktop app privacy policy</a>.</p>
+
+  <h2>1. In one sentence</h2>
+  <p>This extension <strong>collects nothing and uploads nothing to our servers.</strong> It only sends the text you select on a web page over <strong>loopback (<code>127.0.0.1</code>)</strong> to the <strong>GetiPlusOne desktop app</strong> running on your own computer, for dictionary lookup, card creation and <strong>offline</strong> translation. All data stays on your device.</p>
+
+  <h2>2. Data we process and why</h2>
+  <table>
+    <thead><tr><th>Data</th><th>When</th><th>Where it goes</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Selected text (word / sentence)</td><td>When you select text or click a bubble action</td><td>Local <code>127.0.0.1</code> desktop app</td><td>Lookup, card creation, offline translation</td></tr>
+      <tr><td>Page URL / title</td><td>When you click "Add reading card"</td><td>Local desktop app (stored with the card)</td><td>Record the card's source page</td></tr>
+      <tr><td>Pairing token</td><td>After pairing</td><td>Browser local storage (<code>chrome.storage.local</code>)</td><td>Authenticate to the desktop app; revocable</td></tr>
+      <tr><td>Target language</td><td>When you pick it in options</td><td>Browser local storage</td><td>Translation output language</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Not processed</strong>: browsing history, cookies, credentials, form data, keystrokes, or page content unrelated to the feature.</p>
+
+  <h2>3. Does data leave your device?</h2>
+  <p><strong>No.</strong> The extension only talks to <code>http://127.0.0.1:*</code> (loopback). There is no other network request in the code. Translation is performed <strong>locally</strong> by the desktop app (llama.cpp + Qwen), fully offline.</p>
+
+  <h2>4. Permissions and their purpose</h2>
+  <ul>
+    <li><code>storage</code> — store the pairing token and target-language setting (local only).</li>
+    <li><code>clipboardWrite</code> — write to the clipboard <strong>only</strong> when you click the bubble's "Copy original" action.</li>
+    <li><code>host_permissions: http://127.0.0.1/*</code> — communicate with the desktop app (loopback only).</li>
+    <li><code>content_scripts: &lt;all_urls&gt;</code> — enable "select text → bubble" on any page. We do not inject third-party scripts and do not modify page content; the bubble renders inside our own Shadow DOM.</li>
+  </ul>
+
+  <h2>5. Retention &amp; deletion</h2>
+  <ul>
+    <li><strong>Unpair</strong> (extension options → Unbind): the local token is deleted and revoked on the desktop side immediately.</li>
+    <li><strong>Uninstall</strong>: the browser clears <code>chrome.storage.local</code> and all extension data.</li>
+    <li><strong>Card data</strong> lives in the desktop app's local database; manage it in the app's Card Center.</li>
+  </ul>
+
+  <h2>6. Sharing / selling / ads / analytics</h2>
+  <p>We do not share, sell, advertise, or run analytics (no Google Analytics / Sentry, etc.). No remote code: all scripts ship with the package (MV3 default CSP).</p>
+
+  <h2>7. Children's privacy</h2>
+  <p>Not intended for children under 13; we collect no personal information.</p>
+
+  <h2>8. Changes</h2>
+  <p>Updates to this policy will bump the "Last updated" date above.</p>
+
+  <h2>9. Contact</h2>
+  <p><a href="mailto:support@getiplusone.app">support@getiplusone.app</a> · <a href="/privacy/">Desktop app privacy policy</a> · Requires the GetiPlusOne desktop app installed and running locally.</p>
+</article>
+
+<!-- ============================= 简体中文 ============================= -->
+<article data-lang="zh" hidden>
+  <h1>网页伴侣 · 隐私政策</h1>
+  <p class="meta">适用于 <strong>GetiPlusOne Web Companion</strong> 浏览器扩展（Chrome / Edge，Manifest V3）。最后更新：2026 年 9 月 25 日。另见<a href="/privacy/">桌面端隐私政策</a>。</p>
+
+  <h2>1. 一句话</h2>
+  <p>本扩展<strong>不收集、不上传任何数据到我们的服务器</strong>。它只把你在网页上选中的文本，通过<strong>本机回环地址 <code>127.0.0.1</code></strong>交给已在你电脑上运行的 <strong>GetiPlusOne 桌面端</strong>，用于查词、制卡与<strong>离线</strong>翻译。所有数据都留在你自己的设备上。</p>
+
+  <h2>2. 处理哪些数据、为什么</h2>
+  <table>
+    <thead><tr><th>数据</th><th>何时</th><th>去向</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td>选中文本（单词 / 句子）</td><td>你划词或点击气泡按钮时</td><td>本机 <code>127.0.0.1</code> 桌面端</td><td>查词、生成卡片、离线翻译</td></tr>
+      <tr><td>页面 URL / 标题</td><td>你点击「加入阅读卡」时</td><td>本机桌面端（随卡片保存）</td><td>标注卡片来源页</td></tr>
+      <tr><td>配对令牌</td><td>完成配对后</td><td>浏览器本地存储（<code>chrome.storage.local</code>）</td><td>向桌面端证明身份，可随时解除</td></tr>
+      <tr><td>目标语言设置</td><td>你在设置页选择时</td><td>浏览器本地存储</td><td>决定翻译输出语言</td></tr>
+    </tbody>
+  </table>
+  <p><strong>不处理</strong>：浏览历史、Cookie、账号密码、表单内容、键盘输入、与功能无关的页面内容。</p>
+
+  <h2>3. 数据会离开你的设备吗</h2>
+  <p><strong>不会。</strong>扩展<strong>只</strong>访问 <code>http://127.0.0.1:*</code>（本机回环），不向任何外部/云端服务器发送数据；代码中不存在除回环以外的网络请求。翻译由桌面端<strong>本地模型</strong>（llama.cpp + Qwen）完成，同样离线。</p>
+
+  <h2>4. 权限用途（逐项）</h2>
+  <ul>
+    <li><code>storage</code> — 保存配对令牌与目标语言设置（仅本机）。</li>
+    <li><code>clipboardWrite</code> — 仅在你点击气泡「复制原文」时写入剪贴板。</li>
+    <li><code>host_permissions: http://127.0.0.1/*</code> — 与桌面端通信（仅回环地址）。</li>
+    <li><code>content_scripts: &lt;all_urls&gt;</code> — 在任意网页支持「划词即弹气泡」。不注入第三方脚本、不修改页面内容（仅在自有 Shadow DOM 中渲染浮层）。</li>
+  </ul>
+
+  <h2>5. 保留与删除</h2>
+  <ul>
+    <li><strong>解除配对</strong>（扩展设置页 → 解除绑定）：立即删除本机令牌，并通知桌面端吊销该令牌。</li>
+    <li><strong>卸载扩展</strong>：浏览器清除 <code>chrome.storage.local</code> 与全部扩展数据。</li>
+    <li><strong>卡片数据</strong>保存在桌面端本地数据库，删除方式见桌面端「卡片中心」。</li>
+  </ul>
+
+  <h2>6. 共享 / 出售 / 广告 / 统计</h2>
+  <p>不共享、不出售、不投放广告；无任何分析统计（无 Google Analytics / Sentry 等）；无远程代码（遵循 MV3 默认 CSP，全部脚本随包发布）。</p>
+
+  <h2>7. 儿童隐私</h2>
+  <p>不面向 13 岁以下儿童设计，且不收集任何个人信息。</p>
+
+  <h2>8. 变更</h2>
+  <p>本政策更新时同步修改文首「最后更新」日期。</p>
+
+  <h2>9. 联系方式</h2>
+  <p><a href="mailto:support@getiplusone.app">support@getiplusone.app</a> · <a href="/privacy/">桌面端隐私政策</a> · 使用本扩展需在本机安装并运行 GetiPlusOne 桌面端。</p>
+</article>
+
+<!-- ============================= 繁體中文 ============================= -->
+<article data-lang="zh-Hant" hidden>
+  <h1>網頁伴侶 · 隱私政策</h1>
+  <p class="meta">適用於 <strong>GetiPlusOne Web Companion</strong> 瀏覽器擴充功能（Chrome / Edge，Manifest V3）。最後更新：2026 年 9 月 25 日。另見<a href="/privacy/">桌面端隱私政策</a>。</p>
+
+  <h2>1. 一句話</h2>
+  <p>本擴充功能<strong>不蒐集、不上傳任何資料到我們的伺服器</strong>。它只把你在網頁上選取的文字，透過<strong>本機回環位址 <code>127.0.0.1</code></strong>交給已在你電腦上執行的 <strong>GetiPlusOne 桌面端</strong>，用於查詞、製卡與<strong>離線</strong>翻譯。所有資料都留在你自己的裝置上。</p>
+
+  <h2>2. 處理哪些資料、為什麼</h2>
+  <table>
+    <thead><tr><th>資料</th><th>何時</th><th>去向</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td>選取文字（單詞 / 句子）</td><td>你劃詞或點擊氣泡按鈕時</td><td>本機 <code>127.0.0.1</code> 桌面端</td><td>查詞、產生卡片、離線翻譯</td></tr>
+      <tr><td>頁面 URL / 標題</td><td>你點擊「加入閱讀卡」時</td><td>本機桌面端（隨卡片保存）</td><td>標註卡片來源頁</td></tr>
+      <tr><td>配對權杖</td><td>完成配對後</td><td>瀏覽器本機儲存（<code>chrome.storage.local</code>）</td><td>向桌面端證明身分，可隨時解除</td></tr>
+      <tr><td>目標語言設定</td><td>你在設定頁選擇時</td><td>瀏覽器本機儲存</td><td>決定翻譯輸出語言</td></tr>
+    </tbody>
+  </table>
+  <p><strong>不處理</strong>：瀏覽紀錄、Cookie、帳號密碼、表單內容、鍵盤輸入、與功能無關的頁面內容。</p>
+
+  <h2>3. 資料會離開你的裝置嗎</h2>
+  <p><strong>不會。</strong>擴充功能<strong>只</strong>存取 <code>http://127.0.0.1:*</code>（本機回環），不向任何外部/雲端伺服器傳送資料；程式碼中不存在除回環以外的網路請求。翻譯由桌面端<strong>本機模型</strong>（llama.cpp + Qwen）完成，同樣離線。</p>
+
+  <h2>4. 權限用途（逐項）</h2>
+  <ul>
+    <li><code>storage</code> — 保存配對權杖與目標語言設定（僅本機）。</li>
+    <li><code>clipboardWrite</code> — 僅在你點擊氣泡「複製原文」時寫入剪貼簿。</li>
+    <li><code>host_permissions: http://127.0.0.1/*</code> — 與桌面端通訊（僅回環位址）。</li>
+    <li><code>content_scripts: &lt;all_urls&gt;</code> — 在任意網頁支援「劃詞即彈氣泡」。不注入第三方腳本、不修改頁面內容（僅在自有 Shadow DOM 中渲染浮層）。</li>
+  </ul>
+
+  <h2>5. 保留與刪除</h2>
+  <ul>
+    <li><strong>解除配對</strong>（擴充功能設定頁 → 解除綁定）：立即刪除本機權杖，並通知桌面端撤銷該權杖。</li>
+    <li><strong>卸載擴充功能</strong>：瀏覽器清除 <code>chrome.storage.local</code> 與全部擴充資料。</li>
+    <li><strong>卡片資料</strong>保存在桌面端本機資料庫，刪除方式見桌面端「卡片中心」。</li>
+  </ul>
+
+  <h2>6. 共享 / 出售 / 廣告 / 統計</h2>
+  <p>不共享、不出售、不投放廣告；無任何分析統計（無 Google Analytics / Sentry 等）；無遠端程式碼（遵循 MV3 預設 CSP，全部腳本隨套件發佈）。</p>
+
+  <h2>7. 兒童隱私</h2>
+  <p>不面向 13 歲以下兒童設計，且不蒐集任何個人資訊。</p>
+
+  <h2>8. 變更</h2>
+  <p>本政策更新時同步修改文首「最後更新」日期。</p>
+
+  <h2>9. 聯絡方式</h2>
+  <p><a href="mailto:support@getiplusone.app">support@getiplusone.app</a> · <a href="/privacy/">桌面端隱私政策</a> · 使用本擴充功能需在本機安裝並執行 GetiPlusOne 桌面端。</p>
+</article>
+</main>
+
+<script>
+(function () {
+  var KEY = 'getiplusone-legal-lang'
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('nav button[data-lang]'))
+  var articles = Array.prototype.slice.call(document.querySelectorAll('main article[data-lang]'))
+  function apply(lang) {
+    if (!lang) return
+    articles.forEach(function (a) { a.hidden = a.getAttribute('data-lang') !== lang })
+    buttons.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang) })
+    document.documentElement.lang = lang
+    try { localStorage.setItem(KEY, lang) } catch (e) {}
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-lang')) }) })
+  var saved = null
+  try { saved = localStorage.getItem(KEY) } catch (e) {}
+  if (!saved) {
+    var nav = (navigator.language || 'en').toLowerCase()
+    saved = nav.indexOf('zh') === 0 ? (/(tw|hk|mo|sg)/.test(nav) ? 'zh-Hant' : 'zh') : 'en'
+  }
+  apply(saved)
+})()
+</script>
+</body>
+</html>
