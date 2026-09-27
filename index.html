@@ -292,6 +292,10 @@
                             onclick="switchLanguage('zh-CN')"><span class="lang-dot" aria-hidden="true"></span>简体中文</button>
                         <button type="button" role="option" class="lang-option" data-lang="zh-TW"
                             onclick="switchLanguage('zh-TW')"><span class="lang-dot" aria-hidden="true"></span>繁體中文</button>
+                        <button type="button" role="option" class="lang-option" data-lang="ja"
+                            onclick="switchLanguage('ja')"><span class="lang-dot" aria-hidden="true"></span>日本語</button>
+                        <button type="button" role="option" class="lang-option" data-lang="ko"
+                            onclick="switchLanguage('ko')"><span class="lang-dot" aria-hidden="true"></span>한국어</button>
                     </div>
                 </div>
             </div>
@@ -352,13 +356,16 @@
         </main>
 
         <footer>
-            <p>&copy; 2026 getiplusone.app. All rights reserved.</p>
+            <p>&copy; 2026 getiplusone.app. All rights reserved. &middot;
+                <a href="/privacy/" data-i18n="footer_privacy">Privacy Policy</a> &middot;
+                <a href="/privacy/extension/" data-i18n="footer_extension">Extension Privacy</a> &middot;
+                <a href="/terms/" data-i18n="footer_terms">Terms</a></p>
         </footer>
     </div>
 
     <!-- 语言切换脚本 -->
     <script>
-        // 文案以「简体中文」为准（zh-CN 为源），en / zh-TW 为其译文
+        // 文案以「简体中文」为准（zh-CN 为源），en / zh-TW / ja / ko 为其译文
         const translations = {
             'en': {
                 doc_title: "iplusone - Your English input assistant",
@@ -376,7 +383,10 @@
                 feat_5_title: "Offline-first storage",
                 feat_5_desc: "Your learning material stays entirely local, so study is never interrupted by being offline.",
                 feat_6_title: "Pure privacy &amp; security",
-                feat_6_desc: "No ads, no social noise — a space devoted purely to English learning."
+                feat_6_desc: "No ads, no social noise — a space devoted purely to English learning.",
+                footer_privacy: "Privacy Policy",
+                footer_extension: "Extension Privacy",
+                footer_terms: "Terms"
             },
             'zh-CN': {
                 doc_title: "iplusone - 你的英语输入助手",
@@ -394,7 +404,10 @@
                 feat_5_title: "离线优先存储",
                 feat_5_desc: "个人学习素材完全留在本地，学习不被离线打断。",
                 feat_6_title: "纯粹隐私安全",
-                feat_6_desc: "无广告、无社交打扰，专注纯粹的英语学习空间。"
+                feat_6_desc: "无广告、无社交打扰，专注纯粹的英语学习空间。",
+                footer_privacy: "隐私政策",
+                footer_extension: "扩展隐私政策",
+                footer_terms: "用户协议"
             },
             'zh-TW': {
                 doc_title: "iplusone - 你的英語輸入助手",
@@ -412,7 +425,52 @@
                 feat_5_title: "離線優先儲存",
                 feat_5_desc: "個人學習素材完全留在本機，學習不被離線打斷。",
                 feat_6_title: "純粹隱私安全",
-                feat_6_desc: "無廣告、無社交打擾，專注純粹的英語學習空間。"
+                feat_6_desc: "無廣告、無社交打擾，專注純粹的英語學習空間。",
+                footer_privacy: "隱私政策",
+                footer_extension: "擴充功能隱私政策",
+                footer_terms: "使用者協議"
+            },
+            'ja': {
+                doc_title: "iplusone - あなたの英語インプット支援ツール",
+                hero_title: "英語学習ツール",
+                hero_desc: "音声・動画の再生、電子書籍の閲覧、辞書のインポート、復習カード。",
+                cta_btn: "GitHub でダウンロード",
+                feat_1_title: "辞書",
+                feat_1_desc: "ローカル辞書のインポートに対応。",
+                feat_2_title: "波形リスニング操作",
+                feat_2_desc: "波形で位置を可視化し、文ごとの繰り返し再生・ループに対応。",
+                feat_3_title: "記憶カード",
+                feat_3_desc: "忘却曲線に基づき、書籍や音声・動画の素材をカード化。",
+                feat_4_title: "電子書籍リーダー",
+                feat_4_desc: "電子書籍を読めて、単語をタップで検索、長い難文は AI で分析。",
+                feat_5_title: "オフライン優先の保存",
+                feat_5_desc: "学習素材はすべてローカルに保存され、オフラインでも学習が途切れません。",
+                feat_6_title: "純粋なプライバシーと安全",
+                feat_6_desc: "広告なし、SNS のノイズなし。純粋な英語学習の空間。",
+                footer_privacy: "プライバシーポリシー",
+                footer_extension: "拡張機能のプライバシー",
+                footer_terms: "利用規約"
+            },
+            'ko': {
+                doc_title: "iplusone - 나의 영어 입력 도우미",
+                hero_title: "영어 학습 도구",
+                hero_desc: "오디오·비디오 재생, 전자책 읽기, 사전 가져오기, 복습 카드.",
+                cta_btn: "GitHub에서 다운로드",
+                feat_1_title: "사전",
+                feat_1_desc: "로컬 사전 가져오기를 지원합니다.",
+                feat_2_title: "파형 청취 제어",
+                feat_2_desc: "파형으로 위치를 시각화하고, 문장별 반복 재생·루프를 지원합니다.",
+                feat_3_title: "기억 카드",
+                feat_3_desc: "망각 곡선을 기반으로 책·오디오·비디오 자료를 카드로 만듭니다.",
+                feat_4_title: "전자책 읽기",
+                feat_4_desc: "전자책을 읽고 단어를 눌러 검색하며, 긴 어려운 문장은 AI로 분석합니다.",
+                feat_5_title: "오프라인 우선 저장",
+                feat_5_desc: "학습 자료가 전부 로컬에 남아 있어 오프라인에서도 학습이 끊기지 않습니다.",
+                feat_6_title: "순수한 개인정보 보호",
+                feat_6_desc: "광고 없음, SNS 방해 없음. 오로지 영어 학습에 집중하는 공간.",
+                footer_privacy: "개인정보 처리방침",
+                footer_extension: "확장 프로그램 개인정보",
+                footer_terms: "이용약관"
             }
         };
 
@@ -439,8 +497,8 @@
             closeLangMenu();
         }
 
-        /** 当前语言在触发器上的短标签（与参考站一致：EN / 中 / 繁） */
-        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁' };
+        /** 当前语言在触发器上的短标签（EN / 中 / 繁 / 日 / 한） */
+        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁', 'ja': '日', 'ko': '한' };
 
         /** 同步触发器文字与下拉项选中态 */
         function updateLangUI(lang) {
@@ -489,6 +547,10 @@
                 const nav = (navigator.language || 'en').toLowerCase();
                 if (nav.indexOf('zh') === 0) {
                     saved = (nav.indexOf('tw') > -1 || nav.indexOf('hk') > -1 || nav.indexOf('hant') > -1) ? 'zh-TW' : 'zh-CN';
+                } else if (nav.indexOf('ja') === 0) {
+                    saved = 'ja';
+                } else if (nav.indexOf('ko') === 0) {
+                    saved = 'ko';
                 } else {
                     saved = 'en';
                 }
