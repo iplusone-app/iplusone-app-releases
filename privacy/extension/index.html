@@ -41,7 +41,7 @@
 <!-- ============================= EN ============================= -->
 <article data-lang="en">
   <h1>Web Companion – Privacy Policy</h1>
-  <p class="meta">Applies to the <strong>GetiPlusOne Web Companion</strong> browser extension (Chrome / Edge, Manifest V3). Last updated: September 27, 2026. See also the <a href="/privacy/">desktop app privacy policy</a>.</p>
+  <p class="meta">Applies to the <strong>GetiPlusOne Web Companion</strong> browser extension (Chrome / Edge, Manifest V3). Last updated: September 25, 2026. See also the <a href="/privacy/">desktop app privacy policy</a>.</p>
 
   <h2>1. In one sentence</h2>
   <p>This extension <strong>collects nothing and uploads nothing to our servers.</strong> It only sends the text you select on a web page over <strong>loopback (<code>127.0.0.1</code>)</strong> to the <strong>GetiPlusOne desktop app</strong> running on your own computer, for dictionary lookup, card creation and <strong>offline</strong> translation. All data stays on your device.</p>
@@ -65,7 +65,6 @@
   <ul>
     <li><code>storage</code> — store the pairing token and target-language setting (local only).</li>
     <li><code>clipboardWrite</code> — write to the clipboard <strong>only</strong> when you click the bubble's "Copy original" action.</li>
-    <li><code>alarms</code> — periodically probe whether the desktop app is running, to show a connection dot on the extension icon (loopback only; nothing leaves your device).</li>
     <li><code>host_permissions: http://127.0.0.1/*</code> — communicate with the desktop app (loopback only).</li>
     <li><code>content_scripts: &lt;all_urls&gt;</code> — enable "select text → bubble" on any page. We do not inject third-party scripts and do not modify page content; the bubble renders inside our own Shadow DOM.</li>
   </ul>
@@ -93,7 +92,7 @@
 <!-- ============================= 简体中文 ============================= -->
 <article data-lang="zh" hidden>
   <h1>网页伴侣 · 隐私政策</h1>
-  <p class="meta">适用于 <strong>GetiPlusOne Web Companion</strong> 浏览器扩展（Chrome / Edge，Manifest V3）。最后更新：2026 年 9 月 27 日。另见<a href="/privacy/">桌面端隐私政策</a>。</p>
+  <p class="meta">适用于 <strong>GetiPlusOne Web Companion</strong> 浏览器扩展（Chrome / Edge，Manifest V3）。最后更新：2026 年 9 月 25 日。另见<a href="/privacy/">桌面端隐私政策</a>。</p>
 
   <h2>1. 一句话</h2>
   <p>本扩展<strong>不收集、不上传任何数据到我们的服务器</strong>。它只把你在网页上选中的文本，通过<strong>本机回环地址 <code>127.0.0.1</code></strong>交给已在你电脑上运行的 <strong>GetiPlusOne 桌面端</strong>，用于查词、制卡与<strong>离线</strong>翻译。所有数据都留在你自己的设备上。</p>
@@ -117,7 +116,6 @@
   <ul>
     <li><code>storage</code> — 保存配对令牌与目标语言设置（仅本机）。</li>
     <li><code>clipboardWrite</code> — 仅在你点击气泡「复制原文」时写入剪贴板。</li>
-    <li><code>alarms</code> — 定时探测桌面端是否在运行，用于在扩展图标显示「已连接 / 未连接」状态点（仅本机回环，无数据外传）。</li>
     <li><code>host_permissions: http://127.0.0.1/*</code> — 与桌面端通信（仅回环地址）。</li>
     <li><code>content_scripts: &lt;all_urls&gt;</code> — 在任意网页支持「划词即弹气泡」。不注入第三方脚本、不修改页面内容（仅在自有 Shadow DOM 中渲染浮层）。</li>
   </ul>
@@ -145,7 +143,7 @@
 <!-- ============================= 繁體中文 ============================= -->
 <article data-lang="zh-Hant" hidden>
   <h1>網頁伴侶 · 隱私政策</h1>
-  <p class="meta">適用於 <strong>GetiPlusOne Web Companion</strong> 瀏覽器擴充功能（Chrome / Edge，Manifest V3）。最後更新：2026 年 9 月 27 日。另見<a href="/privacy/">桌面端隱私政策</a>。</p>
+  <p class="meta">適用於 <strong>GetiPlusOne Web Companion</strong> 瀏覽器擴充功能（Chrome / Edge，Manifest V3）。最後更新：2026 年 9 月 25 日。另見<a href="/privacy/">桌面端隱私政策</a>。</p>
 
   <h2>1. 一句話</h2>
   <p>本擴充功能<strong>不蒐集、不上傳任何資料到我們的伺服器</strong>。它只把你在網頁上選取的文字，透過<strong>本機回環位址 <code>127.0.0.1</code></strong>交給已在你電腦上執行的 <strong>GetiPlusOne 桌面端</strong>，用於查詞、製卡與<strong>離線</strong>翻譯。所有資料都留在你自己的裝置上。</p>
@@ -169,7 +167,6 @@
   <ul>
     <li><code>storage</code> — 保存配對權杖與目標語言設定（僅本機）。</li>
     <li><code>clipboardWrite</code> — 僅在你點擊氣泡「複製原文」時寫入剪貼簿。</li>
-    <li><code>alarms</code> — 定時偵測桌面端是否在執行，用於在擴充功能圖示顯示「已連線 / 未連線」狀態點（僅本機回環，無資料外傳）。</li>
     <li><code>host_permissions: http://127.0.0.1/*</code> — 與桌面端通訊（僅回環位址）。</li>
     <li><code>content_scripts: &lt;all_urls&gt;</code> — 在任意網頁支援「劃詞即彈氣泡」。不注入第三方腳本、不修改頁面內容（僅在自有 Shadow DOM 中渲染浮層）。</li>
   </ul>
