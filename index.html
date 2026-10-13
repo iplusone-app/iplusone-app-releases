@@ -3,20 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 主题引导：在首帧渲染前就确定主题，避免明/暗闪烁（与软件 Light / Nous 对应） -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('getiplusone-theme');
+                if (t !== 'light' && t !== 'nous') {
+                    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'nous';
+                }
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
     <title data-i18n="doc_title">iplusone - One-stop English learning tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --border: #334155;
-            --accent: #38bdf8;
+        /* 主题：与软件「Light / Nous」一致（默认 Nous 深色） */
+        :root,
+        html[data-theme="nous"] {
+            --primary: #58a6ff;        /* Nous primary */
+            --primary-hover: #79c0ff;
+            --bg: #0d1117;             /* Nous bg */
+            --card-bg: #161b22;        /* 卡片面（略高于页面底色） */
+            --text-main: #e6edf3;      /* Nous text */
+            --text-sub: #8b949e;       /* Nous text2 */
+            --border: #30363d;
+            --border-strong: #484f58;
+            --btn-fill: rgba(255, 255, 255, 0.07);
+            --btn-fill-hover: rgba(255, 255, 255, 0.12);
+        }
+
+        html[data-theme="light"] {
+            --primary: #4a90d9;        /* Light primary */
+            --primary-hover: #357ab8;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;      /* Light text */
+            --text-sub: #7f8c8d;       /* Light text2 */
+            --border: #e4e7ed;
+            --border-strong: #d0d7de;
+            --btn-fill: rgba(0, 0, 0, 0.055);
+            --btn-fill-hover: rgba(0, 0, 0, 0.10);
         }
 
         * {
@@ -62,7 +91,7 @@
         }
 
         .logo span {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .header-right {
@@ -80,7 +109,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.06);
+            background: var(--btn-fill);
             border: 1px solid var(--border);
             color: var(--text-main);
             padding: 6px 10px;
@@ -93,8 +122,29 @@
         }
 
         .lang-trigger:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
+            background: var(--btn-fill-hover);
+            border-color: var(--border-strong);
+        }
+
+        /* 主题切换按钮：方形 + 图标（与截图一致） */
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            background: var(--btn-fill);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--btn-fill-hover);
+            border-color: var(--border-strong);
         }
 
         .lang-globe { opacity: 0.95; }
@@ -117,9 +167,9 @@
             right: 0;
             min-width: 170px;
             padding: 8px;
-            background: #ffffff;
-            color: #16181d;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border);
             border-radius: 12px;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
             z-index: 50;
@@ -141,7 +191,7 @@
             text-align: left;
         }
 
-        .lang-option:hover { background: rgba(0, 0, 0, 0.05); }
+        .lang-option:hover { background: var(--btn-fill-hover); }
 
         .lang-dot {
             width: 8px;
@@ -152,7 +202,7 @@
         }
 
         .lang-option.active { font-weight: 600; }
-        .lang-option.active .lang-dot { background: #16181d; }
+        .lang-option.active .lang-dot { background: var(--text-main); }
 
         /* Hero Section */
         .hero {
@@ -165,7 +215,7 @@
             font-weight: 700;
             line-height: 1.25;
             margin-bottom: 1.2vh;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--text-sub) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -250,7 +300,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.06);
+            background: var(--btn-fill);
             border: 1px solid var(--border);
             color: var(--text-main);
             padding: 8px 16px;
@@ -263,8 +313,8 @@
         }
 
         .download-more-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
+            background: var(--btn-fill-hover);
+            border-color: var(--border-strong);
         }
 
         .download-more-btn .caret { transition: transform 0.15s ease; }
@@ -277,8 +327,8 @@
             transform: translateX(-50%);
             min-width: 330px;
             padding: 8px;
-            background: #1b202b;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 12px;
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
             z-index: 60;
@@ -297,14 +347,14 @@
             transition: background 0.12s ease;
         }
 
-        .download-item:hover { background: rgba(255, 255, 255, 0.07); }
+        .download-item:hover { background: var(--btn-fill-hover); }
         .download-item + .download-item { margin-top: 2px; }
         .download-item.disabled { opacity: 0.42; pointer-events: none; }
 
         .download-sep {
             height: 1px;
             margin: 6px 8px;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--border);
         }
 
         .dl-os {
@@ -391,8 +441,17 @@
 <body>
     <div class="container">
         <header>
-            <a href="#" class="logo"><span>Get</span>iPlusOne<span>.app</span></a>
+            <a href="#" class="logo"><span>Get</span>iPlusOne</a>
             <div class="header-right">
+                <!-- 主题切换：方形图标按钮，在 Light / Nous 之间切换 -->
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme"
+                    title="Toggle theme" onclick="toggleTheme()">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+                    </svg>
+                </button>
                 <!-- 语言切换：地球图标 + 当前语言 + 下拉列表（当前项带圆点） -->
                 <div class="lang-switch" id="langSwitch">
                     <button class="lang-trigger" type="button" aria-haspopup="listbox" aria-expanded="false"
@@ -544,7 +603,8 @@
                 dl_store: "Microsoft Store",
                 dl_loading: "Loading…",
                 dl_soon: "Coming soon",
-                dl_seeall: "See all downloads"
+                dl_seeall: "See all downloads",
+                theme_toggle: "Toggle theme"
             },
             'zh-CN': {
                 doc_title: "iplusone - 一站式英语学习工具",
@@ -573,7 +633,8 @@
                 dl_store: "Microsoft Store",
                 dl_loading: "加载中…",
                 dl_soon: "即将推出",
-                dl_seeall: "查看全部下载"
+                dl_seeall: "查看全部下载",
+                theme_toggle: "切换主题"
             },
             'zh-TW': {
                 doc_title: "iplusone - 一站式英語學習工具",
@@ -602,7 +663,8 @@
                 dl_store: "Microsoft Store",
                 dl_loading: "載入中…",
                 dl_soon: "即將推出",
-                dl_seeall: "檢視全部下載"
+                dl_seeall: "檢視全部下載",
+                theme_toggle: "切換主題"
             },
             'ja': {
                 doc_title: "iplusone - ワンストップ英語学習ツール",
@@ -631,7 +693,8 @@
                 dl_store: "Microsoft Store",
                 dl_loading: "読み込み中…",
                 dl_soon: "近日公開",
-                dl_seeall: "すべてのダウンロード"
+                dl_seeall: "すべてのダウンロード",
+                theme_toggle: "テーマを切り替え"
             },
             'ko': {
                 doc_title: "iplusone - 원스톱 영어 학습 도구",
@@ -660,7 +723,8 @@
                 dl_store: "Microsoft Store",
                 dl_loading: "불러오는 중…",
                 dl_soon: "출시 예정",
-                dl_seeall: "모든 다운로드 보기"
+                dl_seeall: "모든 다운로드 보기",
+                theme_toggle: "테마 전환"
             }
         };
 
@@ -822,6 +886,33 @@
                 .then(function () { renderDownloadMenu(); renderDownloadMeta(); });
         }
 
+        // ===== 主题切换（Light / Nous，与软件一致） =====
+        const THEME_KEY = 'getiplusone-theme';
+        const ICON_SUN = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>';
+        const ICON_MOON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"></path></svg>';
+
+        function currentSiteTheme() {
+            return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'nous';
+        }
+
+        /** 深色(Nous)显示太阳＝切到浅色；浅色(Light)显示月亮＝切到深色 */
+        function updateThemeButton() {
+            const btn = document.getElementById('themeToggle');
+            if (!btn) return;
+            const label = t('theme_toggle');
+            const light = currentSiteTheme() === 'light';
+            btn.innerHTML = light ? ICON_MOON : ICON_SUN;
+            btn.setAttribute('aria-label', label);
+            btn.setAttribute('title', label);
+        }
+
+        function toggleTheme() {
+            const next = currentSiteTheme() === 'light' ? 'nous' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem(THEME_KEY, next); } catch (e) { }
+            updateThemeButton();
+        }
+
         function switchLanguage(lang) {
             currentLang = lang;
             // 更新 html 标签 lang 属性
@@ -845,6 +936,8 @@
             // 下载区的「其他版本」菜单与信息行随语言刷新
             renderDownloadMenu();
             renderDownloadMeta();
+            // 主题按钮的无障碍标签随语言刷新
+            updateThemeButton();
             try { localStorage.setItem('getiplusone-lang', lang); } catch (e) { }
             closeLangMenu();
             closeDownloadMenu();
