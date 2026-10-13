@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="doc_title">iplusone - Your English input assistant</title>
+    <title data-i18n="doc_title">iplusone - One-stop English learning tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -248,6 +248,11 @@
             font-size: 12px;
         }
 
+        /* 页脚内的法律/联系链接：与版权文字同色（--text-sub），避免默认亮蓝刺眼 */
+        footer a {
+            color: inherit;
+        }
+
         @media (max-width: 768px) {
             .features {
                 grid-template-columns: repeat(2, 1fr);
@@ -369,7 +374,7 @@
         // 文案以「简体中文」为准（zh-CN 为源），en / zh-TW / ja / ko 为其译文
         const translations = {
             'en': {
-                doc_title: "iplusone - Your English input assistant",
+                doc_title: "iplusone - One-stop English learning tool",
                 hero_title: "An English learning tool",
                 hero_desc: "Audio and video playback, e-book reading, dictionary import, review cards.",
                 cta_btn: "Download on GitHub",
@@ -391,7 +396,7 @@
                 footer_contact: "Contact"
             },
             'zh-CN': {
-                doc_title: "iplusone - 你的英语输入助手",
+                doc_title: "iplusone - 一站式英语学习工具",
                 hero_title: "英语学习工具",
                 hero_desc: "音视频播放、电子书阅读、词典导入、复习卡片。",
                 cta_btn: "前往 GitHub 下载",
@@ -413,7 +418,7 @@
                 footer_contact: "联系方式"
             },
             'zh-TW': {
-                doc_title: "iplusone - 你的英語輸入助手",
+                doc_title: "iplusone - 一站式英語學習工具",
                 hero_title: "英語學習工具",
                 hero_desc: "影音播放、電子書閱讀、詞典匯入、複習卡片。",
                 cta_btn: "前往 GitHub 下載",
@@ -435,7 +440,7 @@
                 footer_contact: "聯絡方式"
             },
             'ja': {
-                doc_title: "iplusone - あなたの英語インプット支援ツール",
+                doc_title: "iplusone - ワンストップ英語学習ツール",
                 hero_title: "英語学習ツール",
                 hero_desc: "音声・動画の再生、電子書籍の閲覧、辞書のインポート、復習カード。",
                 cta_btn: "GitHub でダウンロード",
@@ -457,7 +462,7 @@
                 footer_contact: "お問い合わせ"
             },
             'ko': {
-                doc_title: "iplusone - 나의 영어 입력 도우미",
+                doc_title: "iplusone - 원스톱 영어 학습 도구",
                 hero_title: "영어 학습 도구",
                 hero_desc: "오디오·비디오 재생, 전자책 읽기, 사전 가져오기, 복습 카드.",
                 cta_btn: "GitHub에서 다운로드",
