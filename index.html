@@ -20,11 +20,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* 品牌蓝：主按钮与 logo 前缀「Get」共用，固定不随主题变化（沿用旧版 #2563eb） */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+        }
+
         /* 主题：与软件「Light / Nous」一致（默认 Nous 深色） */
         :root,
         html[data-theme="nous"] {
-            --primary: #58a6ff;        /* Nous primary */
-            --primary-hover: #79c0ff;
             --bg: #0d1117;             /* Nous bg */
             --card-bg: #161b22;        /* 卡片面（略高于页面底色） */
             --text-main: #e6edf3;      /* Nous text */
@@ -36,8 +40,6 @@
         }
 
         html[data-theme="light"] {
-            --primary: #4a90d9;        /* Light primary */
-            --primary-hover: #357ab8;
             --bg: #f5f7fa;
             --card-bg: #ffffff;
             --text-main: #2c3e50;      /* Light text */
