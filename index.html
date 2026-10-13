@@ -201,6 +201,127 @@
             background-color: var(--primary-hover);
         }
 
+        /* ===== 下载控件（Blender 风格：主按钮 + 信息行 + 「其他版本」下拉） ===== */
+        .download-widget {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 12px 26px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.05s ease;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-download:hover { background-color: var(--primary-hover); }
+        .btn-download:active { transform: translateY(1px); }
+        .btn-download svg { flex-shrink: 0; }
+
+        /* 信息行：平台 · 类型 · 体积 · 版本 */
+        .download-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-main);
+            letter-spacing: 0.2px;
+            min-height: 18px;
+        }
+
+        .download-meta .dot { color: var(--text-sub); }
+
+        /* 「其他版本」下拉 */
+        .download-more { position: relative; }
+
+        .download-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .download-more-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .download-more-btn .caret { transition: transform 0.15s ease; }
+        .download-more.open .download-more-btn .caret { transform: rotate(180deg); }
+
+        .download-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 330px;
+            padding: 8px;
+            background: #1b202b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            z-index: 60;
+        }
+
+        .download-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.12s ease;
+        }
+
+        .download-item:hover { background: rgba(255, 255, 255, 0.07); }
+        .download-item + .download-item { margin-top: 2px; }
+        .download-item.disabled { opacity: 0.42; pointer-events: none; }
+
+        .download-sep {
+            height: 1px;
+            margin: 6px 8px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .dl-os {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+        }
+
+        .dl-name { font-weight: 600; white-space: nowrap; }
+        .dl-type { color: var(--text-sub); font-weight: 400; }
+        .dl-spacer { flex: 1; }
+        .dl-size { color: var(--text-sub); font-size: 13px; white-space: nowrap; }
+
         /* Features Grid */
         .features {
             display: grid;
@@ -310,8 +431,31 @@
             <section class="hero">
                 <h1 data-i18n="hero_title">An English learning tool</h1>
                 <p data-i18n="hero_desc">Audio and video playback, e-book reading, dictionary import, review cards.</p>
-                <div class="cta-group">
-                    <a href="https://github.com/iplusone-app/iplusone-app-releases/releases" class="btn-primary" target="_blank" data-i18n="cta_btn">Download on GitHub</a>
+                <div class="download-widget">
+                    <a id="downloadMain" class="btn-download"
+                        href="https://github.com/iplusone-app/iplusone-app-releases/releases/latest" target="_blank"
+                        rel="noopener">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 3v12"></path>
+                            <path d="M7 10l5 5 5-5"></path>
+                            <path d="M5 21h14"></path>
+                        </svg>
+                        <span data-i18n="cta_btn">Download GetiPlusOne</span>
+                    </a>
+                    <p class="download-meta" id="downloadMeta"></p>
+                    <div class="download-more" id="downloadMore">
+                        <button class="download-more-btn" type="button" aria-haspopup="true" aria-expanded="false"
+                            onclick="toggleDownloadMenu(event)">
+                            <span data-i18n="dl_more">Other platforms and versions</span>
+                            <svg class="caret" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </button>
+                        <div class="download-menu" id="downloadMenu" role="menu" hidden></div>
+                    </div>
                 </div>
             </section>
 
@@ -377,7 +521,7 @@
                 doc_title: "iplusone - One-stop English learning tool",
                 hero_title: "An English learning tool",
                 hero_desc: "Audio and video playback, e-book reading, dictionary import, review cards.",
-                cta_btn: "Download on GitHub",
+                cta_btn: "Download GetiPlusOne",
                 feat_1_title: "Dictionary",
                 feat_1_desc: "Import local dictionaries.",
                 feat_2_title: "Waveform listening control",
@@ -393,13 +537,20 @@
                 footer_privacy: "Privacy Policy",
                 footer_extension: "Extension Privacy",
                 footer_terms: "Terms",
-                footer_contact: "Contact"
+                footer_contact: "Contact",
+                dl_more: "Other platforms and versions",
+                dl_installer: "Installer",
+                dl_portable: "Portable (.zip)",
+                dl_store: "Microsoft Store",
+                dl_loading: "Loading…",
+                dl_soon: "Coming soon",
+                dl_seeall: "See all downloads"
             },
             'zh-CN': {
                 doc_title: "iplusone - 一站式英语学习工具",
                 hero_title: "英语学习工具",
                 hero_desc: "音视频播放、电子书阅读、词典导入、复习卡片。",
-                cta_btn: "前往 GitHub 下载",
+                cta_btn: "下载 GetiPlusOne",
                 feat_1_title: "词典",
                 feat_1_desc: "支持导入本地词典。",
                 feat_2_title: "波形听读控制",
@@ -415,13 +566,20 @@
                 footer_privacy: "隐私政策",
                 footer_extension: "扩展隐私政策",
                 footer_terms: "用户协议",
-                footer_contact: "联系方式"
+                footer_contact: "联系方式",
+                dl_more: "其他平台与版本",
+                dl_installer: "安装包",
+                dl_portable: "便携版 (.zip)",
+                dl_store: "Microsoft Store",
+                dl_loading: "加载中…",
+                dl_soon: "即将推出",
+                dl_seeall: "查看全部下载"
             },
             'zh-TW': {
                 doc_title: "iplusone - 一站式英語學習工具",
                 hero_title: "英語學習工具",
                 hero_desc: "影音播放、電子書閱讀、詞典匯入、複習卡片。",
-                cta_btn: "前往 GitHub 下載",
+                cta_btn: "下載 GetiPlusOne",
                 feat_1_title: "詞典",
                 feat_1_desc: "支援匯入本地詞典。",
                 feat_2_title: "波形聽讀控制",
@@ -437,13 +595,20 @@
                 footer_privacy: "隱私政策",
                 footer_extension: "擴充功能隱私政策",
                 footer_terms: "使用者協議",
-                footer_contact: "聯絡方式"
+                footer_contact: "聯絡方式",
+                dl_more: "其他平台與版本",
+                dl_installer: "安裝檔",
+                dl_portable: "可攜版 (.zip)",
+                dl_store: "Microsoft Store",
+                dl_loading: "載入中…",
+                dl_soon: "即將推出",
+                dl_seeall: "檢視全部下載"
             },
             'ja': {
                 doc_title: "iplusone - ワンストップ英語学習ツール",
                 hero_title: "英語学習ツール",
                 hero_desc: "音声・動画の再生、電子書籍の閲覧、辞書のインポート、復習カード。",
-                cta_btn: "GitHub でダウンロード",
+                cta_btn: "GetiPlusOne をダウンロード",
                 feat_1_title: "辞書",
                 feat_1_desc: "ローカル辞書のインポートに対応。",
                 feat_2_title: "波形リスニング操作",
@@ -459,13 +624,20 @@
                 footer_privacy: "プライバシーポリシー",
                 footer_extension: "拡張機能のプライバシー",
                 footer_terms: "利用規約",
-                footer_contact: "お問い合わせ"
+                footer_contact: "お問い合わせ",
+                dl_more: "その他のプラットフォームとバージョン",
+                dl_installer: "インストーラー",
+                dl_portable: "ポータブル (.zip)",
+                dl_store: "Microsoft Store",
+                dl_loading: "読み込み中…",
+                dl_soon: "近日公開",
+                dl_seeall: "すべてのダウンロード"
             },
             'ko': {
                 doc_title: "iplusone - 원스톱 영어 학습 도구",
                 hero_title: "영어 학습 도구",
                 hero_desc: "오디오·비디오 재생, 전자책 읽기, 사전 가져오기, 복습 카드.",
-                cta_btn: "GitHub에서 다운로드",
+                cta_btn: "GetiPlusOne 다운로드",
                 feat_1_title: "사전",
                 feat_1_desc: "로컬 사전 가져오기를 지원합니다.",
                 feat_2_title: "파형 청취 제어",
@@ -481,11 +653,177 @@
                 footer_privacy: "개인정보 처리방침",
                 footer_extension: "확장 프로그램 개인정보",
                 footer_terms: "이용약관",
-                footer_contact: "문의"
+                footer_contact: "문의",
+                dl_more: "기타 플랫폼 및 버전",
+                dl_installer: "설치 프로그램",
+                dl_portable: "포터블 (.zip)",
+                dl_store: "Microsoft Store",
+                dl_loading: "불러오는 중…",
+                dl_soon: "출시 예정",
+                dl_seeall: "모든 다운로드 보기"
             }
         };
 
+        // ============================================================
+        // 下载区块：从 GitHub Releases API 自动读取版本 / 体积 / 直链
+        // 视觉参考 Blender 下载页（主按钮 + 信息行 + 「其他版本」下拉）
+        // ============================================================
+        const RELEASES_API = 'https://api.github.com/repos/iplusone-app/iplusone-app-releases/releases/latest';
+        const RELEASES_PAGE = 'https://github.com/iplusone-app/iplusone-app-releases/releases/latest';
+        // Microsoft Store 详情页：应用上架后把链接填到这里（留空则该项显示「即将推出」）
+        const STORE_URL = '';
+
+        // 平台图标（内联 SVG，颜色跟随 currentColor）
+        const OS_ICONS = {
+            win: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M3 5.5l7.4-1v7.5H3V5.5zm0 13l7.4 1v-7.4H3v6.4zm8.4 1.1L21 21V12.5h-9.6v7.1zM11.4 4.4v7.6H21V3l-9.6 1.4z"/></svg>',
+            mac: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-2-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.8-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.5 3.3 2.4 1.3-.05 1.8-.8 3.4-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.2 3.2-2.5.6-.9 1-1.8 1.2-2.3-.1-.05-2.3-.9-2.3-3.5zM14 6.4c.7-.9 1.2-2.1 1-3.4-1 .05-2.2.7-2.9 1.5-.6.8-1.2 2-1 3.2 1.1.1 2.2-.5 2.9-1.3z"/></svg>'
+        };
+
+        let currentLang = 'en';
+        let dlRelease = null;   // 最近一次成功获取的 release 对象
+        let dlFailed = false;   // API 是否获取失败
+
+        /** 取当前语言的文案（缺失时回落到英文，再回落到 key 本身） */
+        function t(key) {
+            const cur = translations[currentLang];
+            if (cur && cur[key]) return cur[key];
+            if (translations['en'] && translations['en'][key]) return translations['en'][key];
+            return key;
+        }
+
+        /** 字节 → 可读体积 */
+        function formatSize(bytes) {
+            if (!bytes) return '';
+            const mb = bytes / (1024 * 1024);
+            if (mb >= 1024) return (mb / 1024).toFixed(1) + ' GB';
+            return Math.round(mb) + ' MB';
+        }
+
+        /** 按文件名把资源归类到某个下载项 */
+        function classifyAsset(name) {
+            const n = String(name || '');
+            if (/\.dmg$/i.test(n)) return 'mac';
+            if (/\.exe$/i.test(n)) return 'win-installer';
+            if (/(win|windows).*\.zip$/i.test(n) || /portable/i.test(n)) return 'win-portable';
+            return null;
+        }
+
+        /** 探测访问者的操作系统，用于主按钮默认推荐 */
+        function detectOS() {
+            const ua = ((navigator.userAgent || '') + ' ' + (navigator.platform || '')).toLowerCase();
+            if (ua.indexOf('mac') > -1 || ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) return 'mac';
+            if (ua.indexOf('win') > -1) return 'win';
+            return 'other';
+        }
+
+        /** 组装下载项列表（Windows 优先，其次 macOS；缺资源的项以「即将推出」占位） */
+        function buildDownloadItems() {
+            const assets = (dlRelease && dlRelease.assets) || [];
+            const firstOf = function (kind) {
+                const list = assets.filter(function (a) { return classifyAsset(a.name) === kind; })
+                    .sort(function (a, b) { return (b.size || 0) - (a.size || 0); });
+                return list[0] || null;
+            };
+            const winInstaller = firstOf('win-installer');
+            const winPortable = firstOf('win-portable');
+            const mac = firstOf('mac');
+            return [
+                { id: 'win-installer', os: 'win', labelKey: 'dl_installer', size: winInstaller && winInstaller.size, url: winInstaller && winInstaller.browser_download_url },
+                { id: 'win-portable', os: 'win', labelKey: 'dl_portable', size: winPortable && winPortable.size, url: winPortable && winPortable.browser_download_url },
+                { id: 'store', os: 'win', labelKey: 'dl_store', size: 0, url: STORE_URL },
+                { id: 'mac', os: 'mac', labelKey: '', size: mac && mac.size, url: mac && mac.browser_download_url }
+            ];
+        }
+
+        function renderDownloadMenu() {
+            const menu = document.getElementById('downloadMenu');
+            if (!menu) return;
+            const items = buildDownloadItems();
+            let html = '';
+            let lastOs = null;
+            items.forEach(function (it) {
+                if (lastOs && it.os !== lastOs) html += '<div class="download-sep"></div>';
+                lastOs = it.os;
+                const osName = it.os === 'win' ? 'Windows' : 'macOS';
+                const typeLabel = it.labelKey ? t(it.labelKey) : '';
+                const sizeText = it.size ? formatSize(it.size) : (it.url ? '' : t('dl_soon'));
+                const disabled = !it.url;
+                const cls = 'download-item' + (disabled ? ' disabled' : '');
+                const href = disabled ? '' : ' href="' + it.url + '" target="_blank" rel="noopener"';
+                const tag = disabled ? 'div' : 'a';
+                html += '<' + tag + ' class="' + cls + '"' + href + ' role="menuitem">' +
+                    '<span class="dl-os">' + (OS_ICONS[it.os] || '') + '</span>' +
+                    '<span class="dl-name">' + osName + (typeLabel ? ' <span class="dl-type">' + typeLabel + '</span>' : '') + '</span>' +
+                    '<span class="dl-spacer"></span>' +
+                    '<span class="dl-size">' + sizeText + '</span>' +
+                    '</' + tag + '>';
+            });
+            menu.innerHTML = html;
+        }
+
+        function renderDownloadMeta() {
+            const metaEl = document.getElementById('downloadMeta');
+            const btn = document.getElementById('downloadMain');
+            const items = buildDownloadItems();
+            const os = detectOS();
+            let chosen = null;
+            if (os === 'win') {
+                chosen = items.find(function (i) { return i.os === 'win' && i.id !== 'store' && i.url; })
+                    || items.find(function (i) { return i.id === 'store' && i.url; });
+            } else if (os === 'mac') {
+                chosen = items.find(function (i) { return i.id === 'mac' && i.url; });
+            } else {
+                chosen = items.find(function (i) { return i.url; });
+            }
+            if (btn) btn.href = chosen ? chosen.url : RELEASES_PAGE;
+
+            if (!metaEl) return;
+            if (!chosen) {
+                metaEl.textContent = dlFailed ? t('dl_seeall') : t('dl_loading');
+                return;
+            }
+            const version = dlRelease ? dlRelease.tag_name : '';
+            const parts = [chosen.os === 'win' ? 'Windows' : 'macOS'];
+            if (chosen.labelKey) parts.push(t(chosen.labelKey));
+            if (chosen.size) parts.push(formatSize(chosen.size));
+            if (version) parts.push(version);
+            metaEl.innerHTML = parts.map(function (p) { return '<span>' + p + '</span>'; })
+                .join('<span class="dot">·</span>');
+        }
+
+        function toggleDownloadMenu(e) {
+            if (e) e.stopPropagation();
+            const wrap = document.getElementById('downloadMore');
+            const menu = document.getElementById('downloadMenu');
+            const btn = wrap && wrap.querySelector('.download-more-btn');
+            if (wrap && wrap.classList.contains('open')) { closeDownloadMenu(); return; }
+            if (wrap) wrap.classList.add('open');
+            if (menu) menu.hidden = false;
+            if (btn) btn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeDownloadMenu() {
+            const wrap = document.getElementById('downloadMore');
+            const menu = document.getElementById('downloadMenu');
+            const btn = wrap && wrap.querySelector('.download-more-btn');
+            if (wrap) wrap.classList.remove('open');
+            if (menu) menu.hidden = true;
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+
+        /** 拉取最新 release，成功后重新渲染（失败则回落「查看全部下载」） */
+        function initDownload() {
+            renderDownloadMenu();
+            renderDownloadMeta();
+            fetch(RELEASES_API, { headers: { 'Accept': 'application/vnd.github+json' } })
+                .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+                .then(function (data) { dlRelease = data; dlFailed = false; })
+                .catch(function () { dlRelease = null; dlFailed = true; })
+                .then(function () { renderDownloadMenu(); renderDownloadMeta(); });
+        }
+
         function switchLanguage(lang) {
+            currentLang = lang;
             // 更新 html 标签 lang 属性
             document.documentElement.lang = lang;
 
@@ -504,8 +842,12 @@
 
             // 更新下拉列表的选中态 + 触发器上的当前语言，并记住选择
             updateLangUI(lang);
+            // 下载区的「其他版本」菜单与信息行随语言刷新
+            renderDownloadMenu();
+            renderDownloadMeta();
             try { localStorage.setItem('getiplusone-lang', lang); } catch (e) { }
             closeLangMenu();
+            closeDownloadMenu();
         }
 
         /** 当前语言在触发器上的短标签（EN / 中 / 繁 / 日 / 한） */
@@ -545,9 +887,11 @@
         document.addEventListener('click', function (e) {
             const sw = document.getElementById('langSwitch');
             if (sw && !sw.contains(e.target)) closeLangMenu();
+            const dm = document.getElementById('downloadMore');
+            if (dm && !dm.contains(e.target)) closeDownloadMenu();
         });
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeLangMenu();
+            if (e.key === 'Escape') { closeLangMenu(); closeDownloadMenu(); }
         });
 
         /** 初始语言：优先本地记忆，其次跟随浏览器语言 */
@@ -568,6 +912,9 @@
             }
             switchLanguage(translations[saved] ? saved : 'en');
         })();
+
+        // 页面加载后拉取最新 release 并渲染下载控件
+        initDownload();
     </script>
 </body>
 </html>
