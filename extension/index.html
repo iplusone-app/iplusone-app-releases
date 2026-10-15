@@ -55,8 +55,10 @@
         /* 与桌面端软件主页 (index.html) 完全一致的容器/顶栏/底栏结构 */
         .container {
             max-width: 1200px; height: 100vh; margin: 0 auto; padding: 0 24px 2vh;
-            display: flex; flex-direction: column; justify-content: space-between;
+            display: flex; flex-direction: column;
         }
+        /* 固定顶栏/底栏 + 内容区内部滚动：底栏位置与内容高度无关，与主页一致 */
+        main { flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-gutter: stable; }
 
         header {
             display: flex; justify-content: space-between; align-items: center;
