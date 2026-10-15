@@ -134,11 +134,10 @@
         .end-cta h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
 
         footer {
-            border-top: 1px solid var(--border); color: var(--text-sub); font-size: 13px; text-align: center;
-            padding: 24px; margin-top: 48px;
+            border-top: 1px solid var(--border); color: var(--text-sub); font-size: 12px; text-align: center;
+            padding: 20px; margin-top: 40px; line-height: 1.9;
         }
         footer a { color: inherit; }
-        footer .sep { opacity: .5; margin: 0 8px; }
 
         @media (max-width: 768px) {
             .grid, .steps { grid-template-columns: 1fr; }
@@ -241,13 +240,12 @@
     </main>
 
     <footer>
-        <a href="/" data-i18n="foot_home">Home</a>
-        <span class="sep">·</span>
-        <a href="/privacy/extension/" data-i18n="foot_privacy">Extension Privacy</a>
-        <span class="sep">·</span>
-        <a href="/privacy/" data-i18n="foot_desktop_privacy">Desktop Privacy</a>
-        <span class="sep">·</span>
-        <a href="mailto:support@getiplusone.app">support@getiplusone.app</a>
+        <p>&copy; 2026 getiplusone.app. All rights reserved. &middot;
+            <a href="/extension/" data-i18n="footer_browser_ext">Browser Extension</a> &middot;
+            <a href="/privacy/" data-i18n="footer_privacy">Privacy Policy</a> &middot;
+            <a href="/privacy/extension/" data-i18n="footer_extension">Extension Privacy</a> &middot;
+            <a href="/terms/" data-i18n="footer_terms">Terms</a> &middot;
+            <span data-i18n="footer_contact">Contact</span> <a href="mailto:support@getiplusone.app">support@getiplusone.app</a></p>
     </footer>
 
     <script>
@@ -267,7 +265,7 @@
                 s1_title: "Install the extension", s1_desc: "Add GetiPlusOne Web Companion to Chrome / Edge.",
                 s2_title: "Generate a pairing code", s2_desc: "In the desktop app, open Settings → Browser extension and generate a 6-digit code.",
                 s3_title: "Pair once", s3_desc: "Paste the code on the extension's settings page to finish pairing.",
-                foot_home: "Home", foot_privacy: "Extension Privacy", foot_desktop_privacy: "Desktop Privacy",
+                footer_browser_ext: "Browser Extension", footer_privacy: "Privacy Policy", footer_extension: "Extension Privacy", footer_terms: "Terms", footer_contact: "Contact",
                 theme_toggle: "Toggle theme"
             },
             'zh-CN': {
@@ -285,7 +283,7 @@
                 s1_title: "安装扩展", s1_desc: "把 GetiPlusOne Web Companion 添加到 Chrome / Edge。",
                 s2_title: "生成配对码", s2_desc: "在桌面端「设置 → 浏览器扩展」生成 6 位配对码。",
                 s3_title: "配对一次", s3_desc: "在扩展设置页粘贴配对码完成配对。",
-                foot_home: "首页", foot_privacy: "扩展隐私政策", foot_desktop_privacy: "桌面端隐私政策",
+                footer_browser_ext: "浏览器扩展", footer_privacy: "隐私政策", footer_extension: "扩展隐私政策", footer_terms: "用户协议", footer_contact: "联系方式",
                 theme_toggle: "切换主题"
             },
             'zh-TW': {
@@ -303,7 +301,7 @@
                 s1_title: "安裝擴充功能", s1_desc: "把 GetiPlusOne Web Companion 加入 Chrome / Edge。",
                 s2_title: "產生配對碼", s2_desc: "在桌面端「設定 → 瀏覽器擴充功能」產生 6 位配對碼。",
                 s3_title: "配對一次", s3_desc: "在擴充功能設定頁貼上配對碼完成配對。",
-                foot_home: "首頁", foot_privacy: "擴充功能隱私政策", foot_desktop_privacy: "桌面端隱私政策",
+                footer_browser_ext: "擴充功能", footer_privacy: "隱私政策", footer_extension: "擴充功能隱私政策", footer_terms: "使用者協議", footer_contact: "聯絡方式",
                 theme_toggle: "切換主題"
             }
         };
