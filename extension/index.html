@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('getiplusone-theme');
+                if (t !== 'light' && t !== 'nous') {
+                    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'nous';
+                }
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
+    <title data-i18n="doc_title">GetiPlusOne Web Companion — Browser Extension</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --primary-hover: #1d4ed8; }
+        :root, html[data-theme="nous"] {
+            --bg: #0d1117; --card-bg: #161b22; --text-main: #e6edf3; --text-sub: #8b949e;
+            --border: #30363d; --border-strong: #484f58;
+            --btn-fill: rgba(255, 255, 255, 0.07); --btn-fill-hover: rgba(255, 255, 255, 0.12);
+        }
+        html[data-theme="light"] {
+            --bg: #f5f7fa; --card-bg: #ffffff; --text-main: #2c3e50; --text-sub: #7f8c8d;
+            --border: #e4e7ed; --border-strong: #d0d7de;
+            --btn-fill: rgba(0, 0, 0, 0.055); --btn-fill-hover: rgba(0, 0, 0, 0.10);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            background-color: var(--bg); color: var(--text-main); line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--primary); }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            height: 64px; max-width: 1000px; margin: 0 auto; padding: 0 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-main); text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .theme-toggle {
+            display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 0;
+            background: var(--btn-fill); border: 1px solid var(--border); color: var(--text-main); border-radius: 10px; cursor: pointer;
+            transition: background .15s ease, border-color .15s ease;
+        }
+        .theme-toggle:hover { background: var(--btn-fill-hover); border-color: var(--border-strong); }
+        .lang-switch { position: relative; }
+        .lang-trigger {
+            display: inline-flex; align-items: center; gap: 6px; background: var(--btn-fill); border: 1px solid var(--border);
+            color: var(--text-main); padding: 6px 10px; border-radius: 10px; font-family: inherit; font-size: 13px;
+            font-weight: 500; cursor: pointer; transition: background .15s ease, border-color .15s ease;
+        }
+        .lang-trigger:hover { background: var(--btn-fill-hover); border-color: var(--border-strong); }
+        .lang-caret { opacity: .7; transition: transform .15s ease; }
+        .lang-switch.open .lang-caret { transform: rotate(180deg); }
+        .lang-menu {
+            position: absolute; top: calc(100% + 8px); right: 0; min-width: 160px; padding: 8px;
+            background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border); border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.32); z-index: 50;
+        }
+        .lang-option { display: flex; align-items: center; gap: 8px; width: 100%; background: none; border: none; cursor: pointer; padding: 9px 10px; border-radius: 8px; font-family: inherit; font-size: 15px; color: inherit; text-align: left; }
+        .lang-option:hover { background: var(--btn-fill-hover); }
+        .lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: transparent; }
+        .lang-option.active { font-weight: 600; }
+        .lang-option.active .lang-dot { background: var(--text-main); }
+
+        .hero { text-align: center; padding: 64px 0 32px; }
+        .hero .badge {
+            display: inline-block; font-size: 12px; color: var(--text-sub); border: 1px solid var(--border);
+            border-radius: 999px; padding: 4px 12px; margin-bottom: 18px;
+        }
+        .hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
+        .hero h1 .accent { color: var(--primary); }
+        .hero p { color: var(--text-sub); font-size: clamp(14px, 1.8vw, 17px); max-width: 680px; margin: 14px auto 26px; }
+        .cta-group { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px;
+            font-size: 15px; font-weight: 600; text-decoration: none; transition: background .2s ease, transform .05s ease;
+        }
+        .btn-primary { background-color: var(--primary); color: #fff; box-shadow: 0 4px 14px rgba(37,99,235,.3); }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-ghost { background: var(--btn-fill); border: 1px solid var(--border); color: var(--text-main); }
+        .btn-ghost:hover { background: var(--btn-fill-hover); border-color: var(--border-strong); }
+        .btn.disabled { opacity: .55; pointer-events: none; }
+        .cta-note { color: var(--text-sub); font-size: 13px; margin-top: 12px; }
+
+        .shot { padding: 24px 0 8px; }
+        .shot img { width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 16px 40px rgba(0,0,0,.35); display: block; }
+        .shot figcaption { color: var(--text-sub); font-size: 13px; text-align: center; margin-top: 12px; }
+
+        section.block { padding: 48px 0 8px; }
+        .block h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+        }
+        .card .icon { font-size: 20px; margin-bottom: 8px; }
+        .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .card p { color: var(--text-sub); font-size: 13px; }
+
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
+        .step { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+        .step .num {
+            display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%;
+            background: var(--primary); color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 10px;
+        }
+        .step h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .step p { color: var(--text-sub); font-size: 13px; }
+
+        .end-cta { text-align: center; padding: 56px 0 16px; }
+        .end-cta h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+
+        footer {
+            border-top: 1px solid var(--border); color: var(--text-sub); font-size: 13px; text-align: center;
+            padding: 24px; margin-top: 48px;
+        }
+        footer a { color: inherit; }
+        footer .sep { opacity: .5; margin: 0 8px; }
+
+        @media (max-width: 768px) {
+            .grid, .steps { grid-template-columns: 1fr; }
+            .hero { padding: 40px 0 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo"><span>Get</span>iPlusOne</a>
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme" onclick="toggleTheme()">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+                </svg>
+            </button>
+            <div class="lang-switch" id="langSwitch">
+                <button class="lang-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language" onclick="toggleLangMenu(event)">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M3 12h18"></path>
+                        <path d="M12 3c2.6 3.4 2.6 14.6 0 18"></path>
+                        <path d="M12 3c-2.6 3.4-2.6 14.6 0 18"></path>
+                    </svg>
+                    <span class="lang-current" id="langCurrentLabel">EN</span>
+                    <svg class="lang-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 15l6-6 6 6"></path>
+                    </svg>
+                </button>
+                <div class="lang-menu" id="langMenu" role="listbox" hidden>
+                    <button type="button" role="option" class="lang-option" data-lang="en" onclick="switchLanguage('en')"><span class="lang-dot" aria-hidden="true"></span>English</button>
+                    <button type="button" role="option" class="lang-option" data-lang="zh-CN" onclick="switchLanguage('zh-CN')"><span class="lang-dot" aria-hidden="true"></span>简体中文</button>
+                    <button type="button" role="option" class="lang-option" data-lang="zh-TW" onclick="switchLanguage('zh-TW')"><span class="lang-dot" aria-hidden="true"></span>繁體中文</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="badge" data-i18n="badge">Browser Extension</div>
+            <h1><span class="accent">GetiPlusOne</span> Web Companion</h1>
+            <p data-i18n="hero_sub">Select a word or sentence on any web page and send it to your local GetiPlusOne desktop app — dictionary lookup, offline translation and one-click cards. Nothing leaves your computer.</p>
+            <div class="cta-group">
+                <span class="btn btn-primary disabled" data-i18n="cta_add">Add to Chrome — coming soon</span>
+                <a class="btn btn-ghost" href="https://github.com/iplusone-app/iplusone-app-releases/releases/latest" target="_blank" rel="noopener" data-i18n="cta_desktop">Get the desktop app</a>
+            </div>
+            <p class="cta-note" data-i18n="cta_note">Requires the GetiPlusOne desktop app (Windows) running locally, paired once.</p>
+        </section>
+
+        <figure class="shot">
+            <img src="/extension/shot.png" alt="GetiPlusOne Web Companion" loading="lazy" />
+            <figcaption data-i18n="shot_caption">The bubble appears right where you select text.</figcaption>
+        </figure>
+
+        <section class="block">
+            <h2 data-i18n="feat_title">What it does</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">🔎</div>
+                    <h3 data-i18n="f1_title">Select text → bubble</h3>
+                    <p data-i18n="f1_desc">Select any word or sentence and a small action bubble appears, without breaking your reading.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📖</div>
+                    <h3 data-i18n="f2_title">Look up in the desktop dictionary</h3>
+                    <p data-i18n="f2_desc">Open the full entry in the desktop app's native dictionary window — all your dictionaries, audio and examples.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🌐</div>
+                    <h3 data-i18n="f3_title">Offline translation</h3>
+                    <p data-i18n="f3_desc">Translate with the desktop app's local engine (llama.cpp + Qwen). No network, no API key.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🧠</div>
+                    <h3 data-i18n="f4_title">One-click cards</h3>
+                    <p data-i18n="f4_desc">Turn the word or its sentence into a word/reading card in the desktop app, grouped under From.Web.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🔒</div>
+                    <h3 data-i18n="f5_title">Stays on your computer</h3>
+                    <p data-i18n="f5_desc">Data only travels over loopback (127.0.0.1). The extension collects nothing and uploads nothing.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🔗</div>
+                    <h3 data-i18n="f6_title">Works with the desktop app</h3>
+                    <p data-i18n="f6_desc">The companion needs the GetiPlusOne desktop app installed and paired once with a 6-digit code.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="block">
+            <h2 data-i18n="steps_title">Get started in 3 steps</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="num">1</div>
+                    <h3 data-i18n="s1_title">Install the extension</h3>
+                    <p data-i18n="s1_desc">Add GetiPlusOne Web Companion to Chrome / Edge.</p>
+                </div>
+                <div class="step">
+                    <div class="num">2</div>
+                    <h3 data-i18n="s2_title">Generate a pairing code</h3>
+                    <p data-i18n="s2_desc">In the desktop app, open Settings → Browser extension and generate a 6-digit code.</p>
+                </div>
+                <div class="step">
+                    <div class="num">3</div>
+                    <h3 data-i18n="s3_title">Pair once</h3>
+                    <p data-i18n="s3_desc">Paste the code on the extension's settings page. That's it — you're ready to select text.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="end-cta">
+            <h2 data-i18n="end_title">Ready to clip words & sentences as cards?</h2>
+            <div class="cta-group">
+                <span class="btn btn-primary disabled" data-i18n="cta_add">Add to Chrome — coming soon</span>
+                <a class="btn btn-ghost" href="https://github.com/iplusone-app/iplusone-app-releases/releases/latest" target="_blank" rel="noopener" data-i18n="cta_desktop">Get the desktop app</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" data-i18n="foot_home">Home</a>
+        <span class="sep">·</span>
+        <a href="/privacy/extension/" data-i18n="foot_privacy">Extension Privacy</a>
+        <span class="sep">·</span>
+        <a href="/privacy/" data-i18n="foot_desktop_privacy">Desktop Privacy</a>
+        <span class="sep">·</span>
+        <a href="mailto:support@getiplusone.app">support@getiplusone.app</a>
+    </footer>
+
+    <script>
+        const translations = {
+            'en': {
+                doc_title: "GetiPlusOne Web Companion — Browser Extension",
+                badge: "Browser Extension",
+                hero_sub: "Select a word or sentence on any web page and send it to your local GetiPlusOne desktop app — dictionary lookup, offline translation and one-click cards. Nothing leaves your computer.",
+                cta_add: "Add to Chrome — coming soon",
+                cta_desktop: "Get the desktop app",
+                cta_note: "Requires the GetiPlusOne desktop app (Windows) running locally, paired once.",
+                shot_caption: "The bubble appears right where you select text.",
+                feat_title: "What it does",
+                f1_title: "Select text → bubble", f1_desc: "Select any word or sentence and a small action bubble appears, without breaking your reading.",
+                f2_title: "Look up in the desktop dictionary", f2_desc: "Open the full entry in the desktop app's native dictionary window — all your dictionaries, audio and examples.",
+                f3_title: "Offline translation", f3_desc: "Translate with the desktop app's local engine (llama.cpp + Qwen). No network, no API key.",
+                f4_title: "One-click cards", f4_desc: "Turn the word or its sentence into a word/reading card in the desktop app, grouped under From.Web.",
+                f5_title: "Stays on your computer", f5_desc: "Data only travels over loopback (127.0.0.1). The extension collects nothing and uploads nothing.",
+                f6_title: "Works with the desktop app", f6_desc: "The companion needs the GetiPlusOne desktop app installed and paired once with a 6-digit code.",
+                steps_title: "Get started in 3 steps",
+                s1_title: "Install the extension", s1_desc: "Add GetiPlusOne Web Companion to Chrome / Edge.",
+                s2_title: "Generate a pairing code", s2_desc: "In the desktop app, open Settings → Browser extension and generate a 6-digit code.",
+                s3_title: "Pair once", s3_desc: "Paste the code on the extension's settings page. That's it — you're ready to select text.",
+                end_title: "Ready to clip words & sentences as cards?",
+                foot_home: "Home", foot_privacy: "Extension Privacy", foot_desktop_privacy: "Desktop Privacy",
+                theme_toggle: "Toggle theme"
+            },
+            'zh-CN': {
+                doc_title: "GetiPlusOne Web Companion — 浏览器扩展",
+                badge: "浏览器扩展",
+                hero_sub: "在任意网页选中单词或句子，交给本机的 GetiPlusOne 桌面端——查词、离线翻译、一键制卡。数据不出你的电脑。",
+                cta_add: "添加到 Chrome（即将上架）",
+                cta_desktop: "下载桌面端",
+                cta_note: "需在本机运行 GetiPlusOne 桌面端（Windows），并配对一次。",
+                shot_caption: "在选中文字处即弹出操作气泡。",
+                feat_title: "功能",
+                f1_title: "划词即弹气泡", f1_desc: "选中任意单词或句子即弹出操作气泡，不打断阅读。",
+                f2_title: "桌面端词典查词", f2_desc: "在桌面端原生词典窗口查看完整词条——你导入的全部词典、发音与例句。",
+                f3_title: "本地离线翻译", f3_desc: "由桌面端本地引擎（llama.cpp + Qwen）完成，无需联网、无需 API Key。",
+                f4_title: "一键制作卡片", f4_desc: "把单词或所在整句变成桌面端的生词卡 / 阅读卡，统一归入 From.Web。",
+                f5_title: "数据留在本机", f5_desc: "数据仅通过本机回环地址（127.0.0.1）传输；扩展不收集、不上传任何数据。",
+                f6_title: "配合桌面端使用", f6_desc: "需安装 GetiPlusOne 桌面端，并用 6 位配对码配对一次。",
+                steps_title: "三步开始",
+                s1_title: "安装扩展", s1_desc: "把 GetiPlusOne Web Companion 添加到 Chrome / Edge。",
+                s2_title: "生成配对码", s2_desc: "在桌面端「设置 → 浏览器扩展」生成 6 位配对码。",
+                s3_title: "配对一次", s3_desc: "在扩展设置页粘贴配对码即可，然后就能划词使用。",
+                end_title: "开始把网页词句变成复习卡吧",
+                foot_home: "首页", foot_privacy: "扩展隐私政策", foot_desktop_privacy: "桌面端隐私政策",
+                theme_toggle: "切换主题"
+            },
+            'zh-TW': {
+                doc_title: "GetiPlusOne Web Companion — 瀏覽器擴充功能",
+                badge: "瀏覽器擴充功能",
+                hero_sub: "在任意網頁選取單詞或句子，交給本機的 GetiPlusOne 桌面端——查詞、離線翻譯、一鍵製卡。資料不離開你的電腦。",
+                cta_add: "加入 Chrome（即將上架）",
+                cta_desktop: "下載桌面端",
+                cta_note: "需在本機執行 GetiPlusOne 桌面端（Windows），並配對一次。",
+                shot_caption: "在選取文字處即彈出操作氣泡。",
+                feat_title: "功能",
+                f1_title: "劃詞即彈氣泡", f1_desc: "選取任意單詞或句子即彈出操作氣泡，不打斷閱讀。",
+                f2_title: "桌面端詞典查詞", f2_desc: "在桌面端原生詞典視窗查看完整詞條——你匯入的全部詞典、發音與例句。",
+                f3_title: "本機離線翻譯", f3_desc: "由桌面端本機引擎（llama.cpp + Qwen）完成，無需連網、無需 API Key。",
+                f4_title: "一鍵製作卡片", f4_desc: "把單詞或所在整句變成桌面端的生詞卡 / 閱讀卡，統一歸入 From.Web。",
+                f5_title: "資料留在本機", f5_desc: "資料僅透過本機回環位址（127.0.0.1）傳輸；擴充功能不蒐集、不上傳任何資料。",
+                f6_title: "配合桌面端使用", f6_desc: "需安裝 GetiPlusOne 桌面端，並用 6 位配對碼配對一次。",
+                steps_title: "三步開始",
+                s1_title: "安裝擴充功能", s1_desc: "把 GetiPlusOne Web Companion 加入 Chrome / Edge。",
+                s2_title: "產生配對碼", s2_desc: "在桌面端「設定 → 瀏覽器擴充功能」產生 6 位配對碼。",
+                s3_title: "配對一次", s3_desc: "在擴充功能設定頁貼上配對碼即可，接著就能劃詞使用。",
+                end_title: "開始把網頁詞句變成複習卡吧",
+                foot_home: "首頁", foot_privacy: "擴充功能隱私政策", foot_desktop_privacy: "桌面端隱私政策",
+                theme_toggle: "切換主題"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function t(key) {
+            const cur = translations[currentLang];
+            if (cur && cur[key]) return cur[key];
+            if (translations['en'] && translations['en'][key]) return translations['en'][key];
+            return key;
+        }
+
+        const THEME_KEY = 'getiplusone-theme';
+        const ICON_SUN = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>';
+        const ICON_MOON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"></path></svg>';
+        function currentSiteTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'nous'; }
+        function updateThemeButton() {
+            const btn = document.getElementById('themeToggle');
+            if (!btn) return;
+            const label = t('theme_toggle');
+            btn.innerHTML = currentSiteTheme() === 'light' ? ICON_MOON : ICON_SUN;
+            btn.setAttribute('aria-label', label); btn.setAttribute('title', label);
+        }
+        function toggleTheme() {
+            const next = currentSiteTheme() === 'light' ? 'nous' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem(THEME_KEY, next); } catch (e) { }
+            updateThemeButton();
+        }
+
+        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁' };
+        function updateLangUI(lang) {
+            const label = document.getElementById('langCurrentLabel');
+            if (label) label.textContent = LANG_LABELS[lang] || String(lang).toUpperCase();
+            document.querySelectorAll('.lang-option').forEach(function (opt) {
+                opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+            });
+        }
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(function (el) {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (key === 'doc_title') document.title = translations[lang][key];
+                    else el.innerHTML = translations[lang][key];
+                }
+            });
+            updateLangUI(lang);
+            updateThemeButton();
+            try { localStorage.setItem('getiplusone-lang', lang); } catch (e) { }
+            closeLangMenu();
+        }
+        function toggleLangMenu(e) {
+            if (e) e.stopPropagation();
+            const sw = document.getElementById('langSwitch');
+            const menu = document.getElementById('langMenu');
+            const trigger = sw && sw.querySelector('.lang-trigger');
+            if (sw.classList.contains('open')) { closeLangMenu(); return; }
+            sw.classList.add('open'); if (menu) menu.hidden = false;
+            if (trigger) trigger.setAttribute('aria-expanded', 'true');
+        }
+        function closeLangMenu() {
+            const sw = document.getElementById('langSwitch');
+            const menu = document.getElementById('langMenu');
+            const trigger = sw && sw.querySelector('.lang-trigger');
+            if (sw) sw.classList.remove('open'); if (menu) menu.hidden = true;
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        }
+        document.addEventListener('click', function (e) {
+            const sw = document.getElementById('langSwitch');
+            if (sw && !sw.contains(e.target)) closeLangMenu();
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLangMenu(); });
+
+        (function initLanguage() {
+            let saved = null;
+            try { saved = localStorage.getItem('getiplusone-lang'); } catch (e) { }
+            if (saved !== 'en' && saved !== 'zh-CN' && saved !== 'zh-TW') {
+                const nav = (navigator.language || 'en').toLowerCase();
+                if (nav.indexOf('zh') === 0) saved = (nav.indexOf('tw') > -1 || nav.indexOf('hk') > -1 || nav.indexOf('hant') > -1) ? 'zh-TW' : 'zh-CN';
+                else saved = 'en';
+            }
+            switchLanguage(saved);
+        })();
+    </script>
+</body>
+</html>
