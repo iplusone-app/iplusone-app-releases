@@ -59,6 +59,16 @@
             box-sizing: border-box;
         }
 
+        /* 预留滚动条槽位，避免出现/消失时内容左右跳动；轨道透明、只留细滑块 */
+        html { scrollbar-gutter: stable; scrollbar-color: var(--border-strong) transparent; }
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-strong); border-radius: 6px;
+            border: 2px solid transparent; background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-sub); background-clip: padding-box; }
+
         /* 强制禁止页面溢出与翻页 */
         html, body {
             width: 100%;
