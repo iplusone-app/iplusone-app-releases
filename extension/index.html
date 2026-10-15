@@ -226,6 +226,9 @@
                     <button type="button" role="option" class="lang-option" data-lang="en" onclick="switchLanguage('en')"><span class="lang-dot" aria-hidden="true"></span>English</button>
                     <button type="button" role="option" class="lang-option" data-lang="zh-CN" onclick="switchLanguage('zh-CN')"><span class="lang-dot" aria-hidden="true"></span>简体中文</button>
                     <button type="button" role="option" class="lang-option" data-lang="zh-TW" onclick="switchLanguage('zh-TW')"><span class="lang-dot" aria-hidden="true"></span>繁體中文</button>
+                    <button type="button" role="option" class="lang-option" data-lang="ja" onclick="switchLanguage('ja')"><span class="lang-dot" aria-hidden="true"></span>日本語</button>
+                    <button type="button" role="option" class="lang-option" data-lang="ko" onclick="switchLanguage('ko')"><span class="lang-dot" aria-hidden="true"></span>한국어</button>
+                    <button type="button" role="option" class="lang-option" data-lang="es" onclick="switchLanguage('es')"><span class="lang-dot" aria-hidden="true"></span>Español</button>
                 </div>
             </div>
         </div>
@@ -364,6 +367,66 @@
                 s3_title: "配對一次", s3_desc: "在擴充功能設定頁貼上配對碼完成配對。",
                 footer_browser_ext: "擴充功能", footer_privacy: "隱私政策", footer_extension: "擴充功能隱私政策", footer_terms: "使用者協議", footer_contact: "聯絡方式",
                 theme_toggle: "切換主題"
+            },
+            'ja': {
+                doc_title: "GetiPlusOne Web Companion — ブラウザ拡張機能",
+                hero_sub: "GetiPlusOne デスクトップアプリの強力な機能を Web へ。",
+                nav_product: "製品", tag_desktop: "デスクトップ", tag_extension: "拡張機能",
+                nav_support: "サポート", nav_about: "概要",
+                cta_add: "Chrome に追加（近日公開）",
+                feat_title: "機能",
+                f1_title: "選択して文を翻訳", f1_desc: "任意の単語を選択すると、その単語が含まれる文を翻訳します。",
+                f2_title: "辞書で検索", f2_desc: "任意の単語を選択すると、デスクトップアプリのネイティブ辞書ポップアップで完全な見出しを表示します。",
+                f3_title: "オフライン翻訳", f3_desc: "翻訳はデスクトップアプリのローカルエンジンで行われます。ネットワークも API キーも不要です。",
+                f4_title: "ワンクリックでカード作成", f4_desc: "単語やその文をデスクトップアプリのカード素材にして、そのまま復習できます。",
+                f5_title: "データはネットに出ない", f5_desc: "データはローカルのデスクトップアプリと Web 拡張機能の間だけでやり取りされます。拡張機能は何も収集・送信しません。",
+                f6_title: "デスクトップアプリと連携", f6_desc: "GetiPlusOne デスクトップアプリのインストールと起動、そして初回のペアリングが必要です。",
+                steps_title: "3 ステップで開始",
+                s1_title: "拡張機能をインストール", s1_desc: "GetiPlusOne Web Companion を Chrome / Edge に追加します。",
+                s2_title: "ペアリングコードを生成", s2_desc: "デスクトップアプリの「設定 → ブラウザ拡張機能」で 6 桁のコードを生成します。",
+                s3_title: "一度ペアリング", s3_desc: "拡張機能の設定ページでコードを貼り付けてペアリングを完了します。",
+                footer_browser_ext: "拡張機能", footer_privacy: "プライバシーポリシー", footer_extension: "拡張機能のプライバシー", footer_terms: "利用規約", footer_contact: "お問い合わせ",
+                theme_toggle: "テーマを切り替え"
+            },
+            'ko': {
+                doc_title: "GetiPlusOne Web Companion — 브라우저 확장 프로그램",
+                hero_sub: "GetiPlusOne 데스크톱 앱의 강력한 기능을 웹으로.",
+                nav_product: "제품", tag_desktop: "데스크톱", tag_extension: "확장 프로그램",
+                nav_support: "지원", nav_about: "소개",
+                cta_add: "Chrome에 추가 (출시 예정)",
+                feat_title: "기능",
+                f1_title: "선택 후 문장 번역", f1_desc: "단어를 선택하면 그 단어가 속한 문장을 번역합니다.",
+                f2_title: "사전 조회", f2_desc: "단어를 선택하면 데스크톱 앱의 기본 사전 팝업에서 전체 표제어를 볼 수 있습니다.",
+                f3_title: "오프라인 번역", f3_desc: "번역은 데스크톱 앱의 로컬 엔진에서 수행됩니다. 네트워크도 API 키도 필요 없습니다.",
+                f4_title: "원클릭 카드", f4_desc: "단어나 그 문장을 데스크톱 앱의 카드 소재로 만들어 바로 복습할 수 있습니다.",
+                f5_title: "데이터는 외부로 나가지 않음", f5_desc: "데이터는 로컬 데스크톱 앱과 웹 확장 프로그램 사이에서만 오갑니다. 확장 프로그램은 아무것도 수집·전송하지 않습니다.",
+                f6_title: "데스크톱 앱과 함께 사용", f6_desc: "GetiPlusOne 데스크톱 앱을 설치·실행하고 한 번 페어링해야 합니다.",
+                steps_title: "3단계로 시작",
+                s1_title: "확장 프로그램 설치", s1_desc: "GetiPlusOne Web Companion을 Chrome / Edge에 추가합니다.",
+                s2_title: "페어링 코드 생성", s2_desc: "데스크톱 앱의 '설정 → 브라우저 확장'에서 6자리 코드를 생성합니다.",
+                s3_title: "한 번 페어링", s3_desc: "확장 프로그램 설정 페이지에서 코드를 붙여넣어 페어링을 완료합니다.",
+                footer_browser_ext: "확장 프로그램", footer_privacy: "개인정보 처리방침", footer_extension: "확장 프로그램 개인정보", footer_terms: "이용약관", footer_contact: "문의",
+                theme_toggle: "테마 전환"
+            },
+            'es': {
+                doc_title: "GetiPlusOne Web Companion — Extensión de navegador",
+                hero_sub: "Lleva la potencia de la app de escritorio GetiPlusOne a la web.",
+                nav_product: "Productos", tag_desktop: "Escritorio", tag_extension: "Extensión",
+                nav_support: "Soporte", nav_about: "Acerca de",
+                cta_add: "Añadir a Chrome — próximamente",
+                feat_title: "Funciones",
+                f1_title: "Selecciona y traduce frases", f1_desc: "Selecciona cualquier palabra para traducir la frase en la que aparece.",
+                f2_title: "Búsqueda en el diccionario", f2_desc: "Selecciona cualquier palabra para ver la entrada completa en la ventana de diccionario nativa de la app de escritorio.",
+                f3_title: "Traducción sin conexión", f3_desc: "La traducción la realiza el motor local de la app de escritorio: sin red y sin clave de API.",
+                f4_title: "Tarjetas con un clic", f4_desc: "Convierte una palabra o su frase en material de tarjeta en la app de escritorio y repásala ahí mismo.",
+                f5_title: "Tus datos no salen del equipo", f5_desc: "Los datos solo viajan entre la app de escritorio local y la extensión web; la extensión no recopila ni sube nada.",
+                f6_title: "Funciona con la app de escritorio", f6_desc: "Requiere la app de escritorio GetiPlusOne instalada y en ejecución, emparejada una vez.",
+                steps_title: "Empieza en 3 pasos",
+                s1_title: "Instala la extensión", s1_desc: "Añade GetiPlusOne Web Companion a Chrome / Edge.",
+                s2_title: "Genera un código de emparejamiento", s2_desc: "En la app de escritorio, abre Ajustes → Extensión de navegador y genera un código de 6 dígitos.",
+                s3_title: "Empareja una vez", s3_desc: "Pega el código en la página de ajustes de la extensión para completar el emparejamiento.",
+                footer_browser_ext: "Extensión", footer_privacy: "Política de privacidad", footer_extension: "Privacidad de la extensión", footer_terms: "Términos", footer_contact: "Contacto",
+                theme_toggle: "Cambiar tema"
             }
         };
 
@@ -394,7 +457,7 @@
             updateThemeButton();
         }
 
-        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁' };
+        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁', 'ja': '日', 'ko': '한', 'es': 'ES' };
         function updateLangUI(lang) {
             const label = document.getElementById('langCurrentLabel');
             if (label) label.textContent = LANG_LABELS[lang] || String(lang).toUpperCase();
@@ -462,9 +525,12 @@
         (function initLanguage() {
             let saved = null;
             try { saved = localStorage.getItem('getiplusone-lang'); } catch (e) { }
-            if (saved !== 'en' && saved !== 'zh-CN' && saved !== 'zh-TW') {
+            if (!translations[saved]) {
                 const nav = (navigator.language || 'en').toLowerCase();
                 if (nav.indexOf('zh') === 0) saved = (nav.indexOf('tw') > -1 || nav.indexOf('hk') > -1 || nav.indexOf('hant') > -1) ? 'zh-TW' : 'zh-CN';
+                else if (nav.indexOf('ja') === 0) saved = 'ja';
+                else if (nav.indexOf('ko') === 0) saved = 'ko';
+                else if (nav.indexOf('es') === 0) saved = 'es';
                 else saved = 'en';
             }
             switchLanguage(saved);
