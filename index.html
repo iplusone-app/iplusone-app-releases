@@ -486,6 +486,8 @@
                             onclick="switchLanguage('ja')"><span class="lang-dot" aria-hidden="true"></span>日本語</button>
                         <button type="button" role="option" class="lang-option" data-lang="ko"
                             onclick="switchLanguage('ko')"><span class="lang-dot" aria-hidden="true"></span>한국어</button>
+                        <button type="button" role="option" class="lang-option" data-lang="es"
+                            onclick="switchLanguage('es')"><span class="lang-dot" aria-hidden="true"></span>Español</button>
                     </div>
                 </div>
             </div>
@@ -493,8 +495,8 @@
 
         <main>
             <section class="hero">
-                <h1 data-i18n="hero_title">An English learning tool</h1>
-                <p data-i18n="hero_desc">Audio and video playback, e-book reading, dictionary import, review cards.</p>
+                <h1 data-i18n="hero_title">A one-stop English learning tool</h1>
+                <p data-i18n="hero_desc">Audio/video playback, e-book reading, dictionary import and review cards — all in one.</p>
                 <div class="download-widget">
                     <a id="downloadMain" class="btn-download"
                         href="https://github.com/iplusone-app/iplusone-app-releases/releases/latest" target="_blank"
@@ -579,12 +581,12 @@
 
     <!-- 语言切换脚本 -->
     <script>
-        // 文案以「简体中文」为准（zh-CN 为源），en / zh-TW / ja / ko 为其译文
+        // 文案以「简体中文」为准（zh-CN 为源），en / zh-TW / ja / ko / es 为其译文
         const translations = {
             'en': {
                 doc_title: "iplusone - One-stop English learning tool",
-                hero_title: "An English learning tool",
-                hero_desc: "Audio and video playback, e-book reading, dictionary import, review cards.",
+                hero_title: "A one-stop English learning tool",
+                hero_desc: "Audio/video playback, e-book reading, dictionary import and review cards — all in one.",
                 cta_btn: "Download GetiPlusOne",
                 feat_1_title: "Dictionary",
                 feat_1_desc: "Import local dictionaries.",
@@ -613,8 +615,8 @@
             },
             'zh-CN': {
                 doc_title: "iplusone - 一站式英语学习工具",
-                hero_title: "英语学习工具",
-                hero_desc: "音视频播放、电子书阅读、词典导入、复习卡片。",
+                hero_title: "一站式英语学习工具",
+                hero_desc: "集音视频播放、电子书阅读、词典导入、复习卡片于一体。",
                 cta_btn: "下载 GetiPlusOne",
                 feat_1_title: "词典",
                 feat_1_desc: "支持导入本地词典。",
@@ -643,8 +645,8 @@
             },
             'zh-TW': {
                 doc_title: "iplusone - 一站式英語學習工具",
-                hero_title: "英語學習工具",
-                hero_desc: "影音播放、電子書閱讀、詞典匯入、複習卡片。",
+                hero_title: "一站式英語學習工具",
+                hero_desc: "集影音播放、電子書閱讀、詞典匯入、複習卡片於一體。",
                 cta_btn: "下載 GetiPlusOne",
                 feat_1_title: "詞典",
                 feat_1_desc: "支援匯入本地詞典。",
@@ -673,8 +675,8 @@
             },
             'ja': {
                 doc_title: "iplusone - ワンストップ英語学習ツール",
-                hero_title: "英語学習ツール",
-                hero_desc: "音声・動画の再生、電子書籍の閲覧、辞書のインポート、復習カード。",
+                hero_title: "ワンストップ英語学習ツール",
+                hero_desc: "音声・動画の再生、電子書籍の閲覧、辞書のインポート、復習カードを一つに。",
                 cta_btn: "GetiPlusOne をダウンロード",
                 feat_1_title: "辞書",
                 feat_1_desc: "ローカル辞書のインポートに対応。",
@@ -703,8 +705,8 @@
             },
             'ko': {
                 doc_title: "iplusone - 원스톱 영어 학습 도구",
-                hero_title: "영어 학습 도구",
-                hero_desc: "오디오·비디오 재생, 전자책 읽기, 사전 가져오기, 복습 카드.",
+                hero_title: "원스톱 영어 학습 도구",
+                hero_desc: "오디오·비디오 재생, 전자책 읽기, 사전 가져오기, 복습 카드를 한곳에.",
                 cta_btn: "GetiPlusOne 다운로드",
                 feat_1_title: "사전",
                 feat_1_desc: "로컬 사전 가져오기를 지원합니다.",
@@ -730,6 +732,36 @@
                 dl_soon: "출시 예정",
                 dl_seeall: "모든 다운로드 보기",
                 theme_toggle: "테마 전환"
+            },
+            'es': {
+                doc_title: "iplusone - Herramienta integral para aprender inglés",
+                hero_title: "Herramienta integral para aprender inglés",
+                hero_desc: "Reproducción de audio y vídeo, lectura de e-books, importación de diccionarios y tarjetas de repaso, todo en uno.",
+                cta_btn: "Descargar GetiPlusOne",
+                feat_1_title: "Diccionario",
+                feat_1_desc: "Importa diccionarios locales.",
+                feat_2_title: "Control de escucha con forma de onda",
+                feat_2_desc: "Posicionamiento visual en la forma de onda, con repetición y bucle por frase.",
+                feat_3_title: "Tarjetas de memoria",
+                feat_3_desc: "Basadas en la curva del olvido, convierten en tarjetas material de libros, audio y vídeo.",
+                feat_4_title: "Lectura de e-books",
+                feat_4_desc: "Lee e-books, toca una palabra para consultarla y analiza frases largas con IA.",
+                feat_5_title: "Almacenamiento local primero",
+                feat_5_desc: "Tu material de estudio permanece 100% local, así que estudiar no se interrumpe sin conexión.",
+                feat_6_title: "Privacidad y seguridad puras",
+                feat_6_desc: "Sin anuncios ni ruido social: un espacio dedicado solo a aprender inglés.",
+                footer_privacy: "Política de privacidad",
+                footer_extension: "Privacidad de la extensión",
+                footer_terms: "Términos",
+                footer_contact: "Contacto",
+                dl_more: "Otras plataformas y versiones",
+                dl_installer: "Instalador",
+                dl_portable: "Portátil (.zip)",
+                dl_store: "Microsoft Store",
+                dl_loading: "Cargando…",
+                dl_soon: "Próximamente",
+                dl_seeall: "Ver todas las descargas",
+                theme_toggle: "Cambiar tema"
             }
         };
 
@@ -949,7 +981,7 @@
         }
 
         /** 当前语言在触发器上的短标签（EN / 中 / 繁 / 日 / 한） */
-        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁', 'ja': '日', 'ko': '한' };
+        const LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁', 'ja': '日', 'ko': '한', 'es': 'ES' };
 
         /** 同步触发器文字与下拉项选中态 */
         function updateLangUI(lang) {
@@ -1004,6 +1036,8 @@
                     saved = 'ja';
                 } else if (nav.indexOf('ko') === 0) {
                     saved = 'ko';
+                } else if (nav.indexOf('es') === 0) {
+                    saved = 'es';
                 } else {
                     saved = 'en';
                 }
