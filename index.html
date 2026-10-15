@@ -80,25 +80,26 @@
         }
 
         .container {
-            max-width: 1050px;
+            max-width: 1000px;
             height: 100vh;
             margin: 0 auto;
-            padding: 2vh 24px;
+            padding: 0 24px 2vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        /* Header */
+        /* Header（与扩展页 /extension/ 顶栏保持一致：宽 1000、高 64、下边框） */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 8vh;
+            height: 64px;
+            border-bottom: 1px solid var(--border);
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             letter-spacing: -0.5px;
             color: var(--text-main);
