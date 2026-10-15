@@ -5,41 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Privacy Policy · GetiPlusOne Web Companion</title>
 <meta name="description" content="GetiPlusOne Web Companion browser extension privacy policy — collects nothing, talks only to the local desktop app over loopback." />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('getiplusone-theme');
+      if (t !== 'light' && t !== 'nous') t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'nous';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <style>
-  :root { color-scheme: light dark; }
+  :root { --primary: #2563eb; --primary-hover: #1d4ed8; }
+  :root, html[data-theme="nous"] {
+    --bg: #0d1117; --card-bg: #161b22; --text-main: #e6edf3; --text-sub: #8b949e;
+    --border: #30363d; --border-strong: #484f58;
+    --btn-fill: rgba(255,255,255,0.07); --btn-fill-hover: rgba(255,255,255,0.12);
+  }
+  html[data-theme="light"] {
+    --bg: #f5f7fa; --card-bg: #ffffff; --text-main: #2c3e50; --text-sub: #7f8c8d;
+    --border: #e4e7ed; --border-strong: #d0d7de;
+    --btn-fill: rgba(0,0,0,0.055); --btn-fill-hover: rgba(0,0,0,0.10);
+  }
   * { box-sizing: border-box; }
-  html { scrollbar-gutter: stable; scrollbar-color: rgba(128,128,128,.5) transparent; }
+  html { scrollbar-gutter: stable; scrollbar-color: var(--border-strong) transparent; }
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(128,128,128,.45); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(128,128,128,.7); background-clip: padding-box; }
-  body { margin: 0; font-family: -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; line-height: 1.75; color: #1f2430; background: #fff; }
-  @media (prefers-color-scheme: dark) { body { color: #e6e9ef; background: #161a22; } a { color: #6fb3ff; } }
-  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; max-width: 860px; margin: 0 auto; padding: 18px 20px; border-bottom: 1px solid rgba(128,128,128,.25); }
-  header .brand { font-weight: 700; text-decoration: none; color: inherit; }
-  nav button { font: inherit; font-size: 13px; padding: 4px 12px; margin-left: 6px; border: 1px solid rgba(128,128,128,.35); border-radius: 999px; background: transparent; color: inherit; cursor: pointer; }
-  nav button.active { border-color: #4a90d9; color: #4a90d9; font-weight: 600; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-sub); background-clip: padding-box; }
+  body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif; color: var(--text-main); background: var(--bg); }
+
+  header { display: flex; justify-content: space-between; align-items: center; height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 24px; border-bottom: 1px solid var(--border); }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-main); text-decoration: none; }
+  .logo span { color: var(--primary); }
+  .header-left { display: flex; align-items: center; gap: 26px; }
+  .product-nav { position: relative; }
+  .product-trigger { display: inline-flex; align-items: center; gap: 5px; height: 34px; padding: 0 4px; background: none; border: none; color: var(--text-sub); font-family: inherit; font-size: 15px; font-weight: 500; line-height: 1.4; cursor: pointer; }
+  .product-trigger:hover { color: var(--text-main); }
+  .product-caret { opacity: .7; transition: transform .15s ease; }
+  .product-nav.open .product-caret { transform: rotate(180deg); }
+  .product-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 340px; padding: 8px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.32); z-index: 60; }
+  .product-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px; color: var(--text-main); text-decoration: none; font-size: 14px; white-space: nowrap; }
+  .product-item:hover { background: var(--btn-fill-hover); }
+  .product-item .tag { font-size: 11px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-sub); margin-left: 2px; flex-shrink: 0; }
+  .nav-link { display: inline-flex; align-items: center; height: 34px; padding: 0 4px; color: var(--text-sub); text-decoration: none; font-size: 15px; font-weight: 500; line-height: 1.4; }
+  .nav-link:hover { color: var(--text-main); }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 0; background: var(--btn-fill); border: 1px solid var(--border); color: var(--text-main); border-radius: 10px; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+  .theme-toggle:hover { background: var(--btn-fill-hover); border-color: var(--border-strong); }
+  .lang-switch { position: relative; }
+  .lang-globe { opacity: 0.95; }
+  .lang-current { min-width: 20px; text-align: center; }
+  .lang-trigger { display: inline-flex; align-items: center; gap: 6px; background: var(--btn-fill); border: 1px solid var(--border); color: var(--text-main); padding: 6px 10px; border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+  .lang-trigger:hover { background: var(--btn-fill-hover); border-color: var(--border-strong); }
+  .lang-caret { opacity: .7; transition: transform .15s ease; }
+  .lang-switch.open .lang-caret { transform: rotate(180deg); }
+  .lang-menu { position: absolute; top: calc(100% + 8px); right: 0; min-width: 170px; padding: 8px; background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.32); z-index: 50; }
+  .lang-option { display: flex; align-items: center; gap: 8px; width: 100%; background: none; border: none; cursor: pointer; padding: 9px 10px; border-radius: 8px; font-family: inherit; font-size: 15px; color: inherit; text-align: left; }
+  .lang-option:hover { background: var(--btn-fill-hover); }
+  .lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: transparent; }
+  .lang-option.active { font-weight: 600; }
+  .lang-option.active .lang-dot { background: var(--text-main); }
+
   main { max-width: 860px; margin: 0 auto; padding: 24px 20px 64px; }
   h1 { font-size: 26px; margin: 8px 0 4px; }
   h2 { font-size: 17px; margin: 28px 0 6px; }
-  p, li { font-size: 15px; }
+  p { margin: 0 0 12px; font-size: 15px; }
+  li { font-size: 15px; margin: 4px 0; }
+  ul { padding-left: 22px; margin: 0 0 12px; }
   .meta { font-size: 13px; opacity: .7; }
-  ul { padding-left: 22px; }
   table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px; }
-  th, td { border: 1px solid rgba(128,128,128,.35); padding: 8px 10px; text-align: left; vertical-align: top; }
-  th { background: rgba(128,128,128,.12); font-weight: 600; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--btn-fill); font-weight: 600; }
   code { font-size: 13px; word-break: break-all; }
-  a { color: #2b6cb0; }
+  main a { color: var(--primary); }
+
+  footer { display: flex; align-items: center; justify-content: center; padding: 20px; border-top: 1px solid var(--border); color: var(--text-sub); font-size: 12px; text-align: center; }
+  footer a { color: inherit; }
 </style>
 </head>
 <body>
 <header>
-  <a class="brand" href="/">← GetiPlusOne.app</a>
-  <nav>
-    <button type="button" data-lang="en">EN</button>
-    <button type="button" data-lang="zh">简体</button>
-    <button type="button" data-lang="zh-Hant">繁體</button>
-  </nav>
+  <div class="header-left">
+    <a href="/" class="logo"><span>Get</span>iPlusOne</a>
+    <nav class="product-nav" id="productNav">
+      <button class="product-trigger" type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleProductMenu(event)">
+        <span>Products</span>
+        <svg class="product-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <div class="product-menu" id="productMenu" role="menu" hidden>
+        <a class="product-item" href="/" role="menuitem">GetiPlusOne <span class="tag">Desktop</span></a>
+        <a class="product-item" href="/extension/" role="menuitem">GetiPlusOne Web Companion <span class="tag">Extension</span></a>
+      </div>
+    </nav>
+    <a class="nav-link" href="/">Support</a>
+    <a class="nav-link" href="/">About</a>
+  </div>
+  <div class="header-right">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme" onclick="toggleTheme()">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+    </button>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language" onclick="toggleLangMenu(event)">
+        <svg class="lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.6 3.4 2.6 14.6 0 18"></path><path d="M12 3c-2.6 3.4-2.6 14.6 0 18"></path></svg>
+        <span class="lang-current" id="langCurrentLabel">EN</span>
+        <svg class="lang-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>
+      </button>
+      <div class="lang-menu" id="langMenu" role="listbox" hidden>
+        <button type="button" role="option" class="lang-option" data-lang="en" onclick="setLang('en')"><span class="lang-dot" aria-hidden="true"></span>English</button>
+        <button type="button" role="option" class="lang-option" data-lang="zh-CN" onclick="setLang('zh-CN')"><span class="lang-dot" aria-hidden="true"></span>简体中文</button>
+        <button type="button" role="option" class="lang-option" data-lang="zh-TW" onclick="setLang('zh-TW')"><span class="lang-dot" aria-hidden="true"></span>繁體中文</button>
+      </div>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -197,27 +274,88 @@
 </article>
 </main>
 
+<footer>
+  <p>&copy; 2026 getiplusone.app. All rights reserved. &middot;
+    <a href="/extension/">Browser Extension</a> &middot;
+    <a href="/privacy/">Privacy Policy</a> &middot;
+    <a href="/privacy/extension/">Extension Privacy</a> &middot;
+    <a href="/terms/">Terms</a> &middot;
+    Contact <a href="mailto:support@getiplusone.app">support@getiplusone.app</a></p>
+</footer>
+
 <script>
-(function () {
-  var KEY = 'getiplusone-legal-lang'
-  var buttons = Array.prototype.slice.call(document.querySelectorAll('nav button[data-lang]'))
-  var articles = Array.prototype.slice.call(document.querySelectorAll('main article[data-lang]'))
-  function apply(lang) {
-    if (!lang) return
-    articles.forEach(function (a) { a.hidden = a.getAttribute('data-lang') !== lang })
-    buttons.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang) })
-    document.documentElement.lang = lang
-    try { localStorage.setItem(KEY, lang) } catch (e) {}
+  var THEME_KEY = 'getiplusone-theme';
+  var ICON_SUN = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>';
+  var ICON_MOON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"></path></svg>';
+  function currentSiteTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'nous'; }
+  function updateThemeButton() {
+    var btn = document.getElementById('themeToggle'); if (!btn) return;
+    btn.innerHTML = currentSiteTheme() === 'light' ? ICON_MOON : ICON_SUN;
   }
-  buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-lang')) }) })
-  var saved = null
-  try { saved = localStorage.getItem(KEY) } catch (e) {}
-  if (!saved) {
-    var nav = (navigator.language || 'en').toLowerCase()
-    saved = nav.indexOf('zh') === 0 ? (/(tw|hk|mo|sg)/.test(nav) ? 'zh-Hant' : 'zh') : 'en'
+  function toggleTheme() {
+    var next = currentSiteTheme() === 'light' ? 'nous' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    updateThemeButton();
   }
-  apply(saved)
-})()
+  function toggleProductMenu(e) {
+    if (e) e.stopPropagation();
+    var nav = document.getElementById('productNav'); var menu = document.getElementById('productMenu');
+    var trigger = nav && nav.querySelector('.product-trigger');
+    if (nav && nav.classList.contains('open')) { closeProductMenu(); return; }
+    if (nav) nav.classList.add('open'); if (menu) menu.hidden = false;
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  }
+  function closeProductMenu() {
+    var nav = document.getElementById('productNav'); var menu = document.getElementById('productMenu');
+    var trigger = nav && nav.querySelector('.product-trigger');
+    if (nav) nav.classList.remove('open'); if (menu) menu.hidden = true;
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  }
+  function toggleLangMenu(e) {
+    if (e) e.stopPropagation();
+    var sw = document.getElementById('langSwitch'); var menu = document.getElementById('langMenu');
+    var trigger = sw && sw.querySelector('.lang-trigger');
+    if (sw.classList.contains('open')) { closeLangMenu(); return; }
+    sw.classList.add('open'); if (menu) menu.hidden = false;
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  }
+  function closeLangMenu() {
+    var sw = document.getElementById('langSwitch'); var menu = document.getElementById('langMenu');
+    var trigger = sw && sw.querySelector('.lang-trigger');
+    if (sw) sw.classList.remove('open'); if (menu) menu.hidden = true;
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  }
+  var LANG_KEY = 'getiplusone-legal-lang';
+  var LANG_LABELS = { 'en': 'EN', 'zh-CN': '中', 'zh-TW': '繁' };
+  function articleLang(code) {
+    if (code === 'zh-CN' || code === 'zh') return 'zh';
+    if (code === 'zh-TW' || code === 'zh-Hant') return 'zh-Hant';
+    return 'en';
+  }
+  function setLang(code) {
+    var al = articleLang(code);
+    document.querySelectorAll('main article[data-lang]').forEach(function (a) { a.hidden = a.getAttribute('data-lang') !== al; });
+    document.querySelectorAll('.lang-option').forEach(function (o) { o.classList.toggle('active', o.getAttribute('data-lang') === code); });
+    var label = document.getElementById('langCurrentLabel'); if (label) label.textContent = LANG_LABELS[code] || 'EN';
+    document.documentElement.lang = al;
+    try { localStorage.setItem(LANG_KEY, code); } catch (e) {}
+    closeLangMenu();
+  }
+  document.addEventListener('click', function (e) {
+    var sw = document.getElementById('langSwitch'); if (sw && !sw.contains(e.target)) closeLangMenu();
+    var pn = document.getElementById('productNav'); if (pn && !pn.contains(e.target)) closeProductMenu();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeLangMenu(); closeProductMenu(); } });
+  (function init() {
+    updateThemeButton();
+    var saved = null; try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+    if (saved !== 'en' && saved !== 'zh-CN' && saved !== 'zh-TW') {
+      var nav = (navigator.language || 'en').toLowerCase();
+      if (nav.indexOf('zh') === 0) saved = /(tw|hk|mo|hant)/.test(nav) ? 'zh-TW' : 'zh-CN'; else saved = 'en';
+    }
+    setLang(saved);
+  })();
 </script>
 </body>
 </html>
