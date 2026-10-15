@@ -51,12 +51,16 @@
         }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-sub); background-clip: padding-box; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        /* 与桌面端软件主页 (index.html) 完全一致的容器/顶栏/底栏结构 */
+        .container {
+            max-width: 1200px; min-height: 100vh; margin: 0 auto; padding: 0 24px 2vh;
+            display: flex; flex-direction: column;
+        }
+        main { flex: 1 1 auto; }
 
         header {
             display: flex; justify-content: space-between; align-items: center;
-            height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 24px;
-            border-bottom: 1px solid var(--border);
+            height: 64px; border-bottom: 1px solid var(--border);
         }
         .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-main); text-decoration: none; }
         .logo span { color: var(--primary); }
@@ -161,8 +165,8 @@
         .end-cta h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
 
         footer {
-            border-top: 1px solid var(--border); color: var(--text-sub); font-size: 12px; text-align: center;
-            padding: 20px; margin-top: 40px; line-height: 1.9;
+            height: 5vh; display: flex; align-items: center; justify-content: center;
+            border-top: 1px solid var(--border); color: var(--text-sub); font-size: 12px;
         }
         footer a { color: inherit; }
 
@@ -173,6 +177,7 @@
     </style>
 </head>
 <body>
+    <div class="container">
     <header>
         <div class="header-left">
             <a href="/" class="logo"><span>Get</span>iPlusOne</a>
@@ -220,7 +225,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main>
         <section class="hero">
             <h1><span class="accent">Get</span>iPlusOne Web Companion</h1>
             <p data-i18n="hero_sub">Select a word or sentence on any web page and send it to your local GetiPlusOne desktop app — dictionary lookup, offline translation and one-click cards. Nothing leaves your computer.</p>
@@ -290,6 +295,7 @@
             <a href="/terms/" data-i18n="footer_terms">Terms</a> &middot;
             <span data-i18n="footer_contact">Contact</span> <a href="mailto:support@getiplusone.app">support@getiplusone.app</a></p>
     </footer>
+    </div>
 
     <script>
         const translations = {
