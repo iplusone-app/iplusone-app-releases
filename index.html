@@ -110,6 +110,31 @@
             color: var(--primary);
         }
 
+        /* 左侧：Logo + 产品下拉 */
+        .header-left { display: flex; align-items: center; gap: 26px; }
+        .product-nav { position: relative; }
+        .product-trigger {
+            display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
+            color: var(--text-sub); font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer; padding: 6px 4px;
+        }
+        .product-trigger:hover { color: var(--text-main); }
+        .product-caret { opacity: .7; transition: transform .15s ease; }
+        .product-nav.open .product-caret { transform: rotate(180deg); }
+        .product-menu {
+            position: absolute; top: calc(100% + 8px); left: 0; min-width: 280px; padding: 8px;
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, .32); z-index: 60;
+        }
+        .product-item {
+            display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px;
+            color: var(--text-main); text-decoration: none; font-size: 14px;
+        }
+        .product-item:hover { background: var(--btn-fill-hover); }
+        .product-item .tag {
+            font-size: 11px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border-strong);
+            color: var(--text-sub); margin-left: 2px;
+        }
+
         .header-right {
             display: flex;
             align-items: center;
@@ -457,7 +482,21 @@
 <body>
     <div class="container">
         <header>
-            <a href="#" class="logo"><span>Get</span>iPlusOne</a>
+            <div class="header-left">
+                <a href="/" class="logo"><span>Get</span>iPlusOne</a>
+                <nav class="product-nav" id="productNav">
+                    <button class="product-trigger" type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleProductMenu(event)">
+                        <span data-i18n="nav_product">Products</span>
+                        <svg class="product-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <div class="product-menu" id="productMenu" role="menu" hidden>
+                        <a class="product-item" href="/" role="menuitem">GetiPlusOne <span class="tag" data-i18n="tag_desktop">Desktop</span></a>
+                        <a class="product-item" href="/extension/" role="menuitem">GetiPlusOne Web Companion <span class="tag" data-i18n="tag_extension">Extension</span></a>
+                    </div>
+                </nav>
+            </div>
             <div class="header-right">
                 <!-- 主题切换：方形图标按钮，在 Light / Nous 之间切换 -->
                 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme"
@@ -599,6 +638,7 @@
                 doc_title: "iplusone - One-stop English learning tool",
                 hero_title: "A one-stop English learning tool",
                 hero_desc: "Audio/video playback, e-book reading, dictionary import and review cards — all in one.",
+                nav_product: "Products", tag_desktop: "Desktop", tag_extension: "Extension",
                 cta_btn: "Download GetiPlusOne",
                 feat_1_title: "Dictionary",
                 feat_1_desc: "Import local dictionaries.",
@@ -630,6 +670,7 @@
                 doc_title: "iplusone - 一站式英语学习工具",
                 hero_title: "一站式英语学习工具",
                 hero_desc: "集音视频播放、电子书阅读、词典导入、复习卡片于一体。",
+                nav_product: "产品", tag_desktop: "桌面端", tag_extension: "扩展",
                 cta_btn: "下载 GetiPlusOne",
                 feat_1_title: "词典",
                 feat_1_desc: "支持导入本地词典。",
@@ -661,6 +702,7 @@
                 doc_title: "iplusone - 一站式英語學習工具",
                 hero_title: "一站式英語學習工具",
                 hero_desc: "集影音播放、電子書閱讀、詞典匯入、複習卡片於一體。",
+                nav_product: "產品", tag_desktop: "桌面端", tag_extension: "擴充功能",
                 cta_btn: "下載 GetiPlusOne",
                 feat_1_title: "詞典",
                 feat_1_desc: "支援匯入本地詞典。",
@@ -692,6 +734,7 @@
                 doc_title: "iplusone - ワンストップ英語学習ツール",
                 hero_title: "ワンストップ英語学習ツール",
                 hero_desc: "音声・動画の再生、電子書籍の閲覧、辞書のインポート、復習カードを一つに。",
+                nav_product: "製品", tag_desktop: "デスクトップ", tag_extension: "拡張機能",
                 cta_btn: "GetiPlusOne をダウンロード",
                 feat_1_title: "辞書",
                 feat_1_desc: "ローカル辞書のインポートに対応。",
@@ -723,6 +766,7 @@
                 doc_title: "iplusone - 원스톱 영어 학습 도구",
                 hero_title: "원스톱 영어 학습 도구",
                 hero_desc: "오디오·비디오 재생, 전자책 읽기, 사전 가져오기, 복습 카드를 한곳에.",
+                nav_product: "제품", tag_desktop: "데스크톱", tag_extension: "확장 프로그램",
                 cta_btn: "GetiPlusOne 다운로드",
                 feat_1_title: "사전",
                 feat_1_desc: "로컬 사전 가져오기를 지원합니다.",
@@ -754,6 +798,7 @@
                 doc_title: "iplusone - Herramienta integral para aprender inglés",
                 hero_title: "Herramienta integral para aprender inglés",
                 hero_desc: "Reproducción de audio y vídeo, lectura de e-books, importación de diccionarios y tarjetas de repaso, todo en uno.",
+                nav_product: "Productos", tag_desktop: "Escritorio", tag_extension: "Extensión",
                 cta_btn: "Descargar GetiPlusOne",
                 feat_1_title: "Diccionario",
                 feat_1_desc: "Importa diccionarios locales.",
@@ -1031,15 +1076,37 @@
             if (trigger) trigger.setAttribute('aria-expanded', 'false');
         }
 
+        // 产品下拉（Logo 右侧）
+        function toggleProductMenu(e) {
+            if (e) e.stopPropagation();
+            const nav = document.getElementById('productNav');
+            const menu = document.getElementById('productMenu');
+            const trigger = nav && nav.querySelector('.product-trigger');
+            if (nav && nav.classList.contains('open')) { closeProductMenu(); return; }
+            if (nav) nav.classList.add('open');
+            if (menu) menu.hidden = false;
+            if (trigger) trigger.setAttribute('aria-expanded', 'true');
+        }
+        function closeProductMenu() {
+            const nav = document.getElementById('productNav');
+            const menu = document.getElementById('productMenu');
+            const trigger = nav && nav.querySelector('.product-trigger');
+            if (nav) nav.classList.remove('open');
+            if (menu) menu.hidden = true;
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        }
+
         // 点击空白处 / 按 Esc 关闭下拉
         document.addEventListener('click', function (e) {
             const sw = document.getElementById('langSwitch');
             if (sw && !sw.contains(e.target)) closeLangMenu();
             const dm = document.getElementById('downloadMore');
             if (dm && !dm.contains(e.target)) closeDownloadMenu();
+            const pn = document.getElementById('productNav');
+            if (pn && !pn.contains(e.target)) closeProductMenu();
         });
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') { closeLangMenu(); closeDownloadMenu(); }
+            if (e.key === 'Escape') { closeLangMenu(); closeDownloadMenu(); closeProductMenu(); }
         });
 
         /** 初始语言：优先本地记忆，其次跟随浏览器语言 */
