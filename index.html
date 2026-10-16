@@ -667,7 +667,7 @@
                 footer_contact: "Contact",
                 dl_more: "Other platforms and versions",
                 dl_installer: "Installer",
-                dl_portable: "Portable (.zip)",
+                dl_portable: "Portable (.exe)",
                 dl_store: "Microsoft Store",
                 dl_loading: "Loading…",
                 dl_soon: "Coming soon",
@@ -700,7 +700,7 @@
                 footer_contact: "联系方式",
                 dl_more: "其他平台与版本",
                 dl_installer: "安装包",
-                dl_portable: "便携版 (.zip)",
+                dl_portable: "便携版 (.exe)",
                 dl_store: "Microsoft Store",
                 dl_loading: "加载中…",
                 dl_soon: "即将推出",
@@ -733,7 +733,7 @@
                 footer_contact: "聯絡方式",
                 dl_more: "其他平台與版本",
                 dl_installer: "安裝檔",
-                dl_portable: "可攜版 (.zip)",
+                dl_portable: "可攜版 (.exe)",
                 dl_store: "Microsoft Store",
                 dl_loading: "載入中…",
                 dl_soon: "即將推出",
@@ -766,7 +766,7 @@
                 footer_contact: "お問い合わせ",
                 dl_more: "その他のプラットフォームとバージョン",
                 dl_installer: "インストーラー",
-                dl_portable: "ポータブル (.zip)",
+                dl_portable: "ポータブル (.exe)",
                 dl_store: "Microsoft Store",
                 dl_loading: "読み込み中…",
                 dl_soon: "近日公開",
@@ -799,7 +799,7 @@
                 footer_contact: "문의",
                 dl_more: "기타 플랫폼 및 버전",
                 dl_installer: "설치 프로그램",
-                dl_portable: "포터블 (.zip)",
+                dl_portable: "포터블 (.exe)",
                 dl_store: "Microsoft Store",
                 dl_loading: "불러오는 중…",
                 dl_soon: "출시 예정",
@@ -832,7 +832,7 @@
                 footer_contact: "Contacto",
                 dl_more: "Otras plataformas y versiones",
                 dl_installer: "Instalador",
-                dl_portable: "Portátil (.zip)",
+                dl_portable: "Portátil (.exe)",
                 dl_store: "Microsoft Store",
                 dl_loading: "Cargando…",
                 dl_soon: "Próximamente",
@@ -880,8 +880,10 @@
         function classifyAsset(name) {
             const n = String(name || '');
             if (/\.dmg$/i.test(n)) return 'mac';
+            // 便携版：文件名含 portable（electron-builder 产出的是**自解压 .exe**）——
+            // 必须先于「安装器 .exe」判断，否则 portable.exe 会被误判成安装器。
+            if (/portable/i.test(n) || /(win|windows).*\.zip$/i.test(n)) return 'win-portable';
             if (/\.exe$/i.test(n)) return 'win-installer';
-            if (/(win|windows).*\.zip$/i.test(n) || /portable/i.test(n)) return 'win-portable';
             return null;
         }
 
